@@ -1,0 +1,41 @@
+{
+  "name": "chartjs-plugin-autocolors",
+  "version": "0.0.1",
+  "description": "Automatic color generation for Chart.js",
+  "main": "dist/chartjs-plugin-autocolors.js",
+  "module": "dist/chartjs-plugin-autocolors.ems.js",
+  "scripts": {
+    "build": "rollup -c",
+    "lint": "eslint samples/**/*.html samples/**/*.js src/**/*.js **/*.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kurkle/chartjs-plugin-autocolors.git"
+  },
+  "keywords": [
+    "chart.js",
+    "plugin",
+    "color",
+    "palette",
+    "generator",
+    "auto"
+  ],
+  "author": "Jukka Kurkela <jukka.kurkela@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kurkle/chartjs-plugin-autocolors/issues"
+  },
+  "homepage": "https://github.com/kurkle/chartjs-plugin-autocolors#readme",
+  "devDependencies": {
+    "@kurkle/color": "^0.1.9",
+    "@rollup/plugin-node-resolve": "^8.0.1",
+    "eslint": "^7.2.0",
+    "eslint-config-chartjs": "^0.2.0",
+    "eslint-config-esnext": "^4.1.0",
+    "eslint-plugin-html": "^6.0.2",
+    "eslint-plugin-markdown": "^1.0.2",
+    "rollup": "^2.15.0",
+    "rollup-plugin-terser": "^6.1.0"
+  },
+  "dependencies": {}
+}

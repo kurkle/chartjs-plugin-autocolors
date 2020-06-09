@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Matrix Chart on linear scale</title>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0-alpha/dist/Chart.js"></script>
+		<script src="utils.js"></script>
+		<link rel="stylesheet" type="text/css" href="style.css"></link>
+	</head>
+	<body>
+		<div id="canvas-holder">
+			<canvas id="chart-area" width="800" height="400"></canvas>
+		</div>
+
+
+	<script>
+/* eslint-disable no-undef */
+const rand = () => Math.random() * 100;
+
+Utils.load(() => {
+	const ctx = document.getElementById('chart-area').getContext('2d');
+	window.myBar = new Chart(ctx, {
+		type: 'bar',
+		data: {
+			labels: ['color'],
+			datasets: [{
+				label: 'Bar 1',
+				data: [rand()],
+			}, {
+				label: 'Bar 2',
+				data: [rand()],
+			}, {
+				label: 'Bar 3',
+				data: [rand()],
+			}, {
+				label: 'Bar 4',
+				data: [rand()],
+			}, {
+				label: 'Bar 5',
+				data: [rand()],
+			}, {
+				label: 'Bar 6',
+				data: [rand()],
+			}, {
+				label: 'Bar 7',
+				data: [rand()],
+			}, {
+				label: 'Bar 8',
+				data: [rand()],
+			}, {
+				label: 'Bar 9',
+				data: [rand()],
+			}, {
+				label: 'Bar 10',
+				data: [rand()],
+			}, {
+				label: 'Bar 11',
+				data: [rand()],
+			}, {
+				label: 'Bar 12',
+				data: [rand()],
+			}, {
+				label: 'Bar 13',
+				data: [rand()],
+			}, {
+				label: 'Bar 14',
+				data: [rand()],
+			}, {
+				label: 'Bar 15',
+				data: [rand()],
+			}, {
+				label: 'Bar 16',
+				data: [rand()],
+			}, {
+				label: 'Bar 17',
+				data: [rand()],
+			}, {
+				label: 'Bar 18',
+				data: [rand()],
+			}, {
+				label: 'Bar 19',
+				data: [rand()],
+			}, {
+				label: 'Bar 20',
+				data: [rand()],
+			}]
+		},
+		options: {
+			elements: {
+				rectangle: {
+					borderWidth: 2
+				}
+			}
+		},
+		plugins: [
+			window['chartjs-plugin-autocolors']
+		]
+	});
+});
+	</script>
+	</body>
+</html>

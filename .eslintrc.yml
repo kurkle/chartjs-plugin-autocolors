@@ -1,0 +1,27 @@
+extends:
+  - chartjs
+  - esnext
+
+env:
+  es6: true
+  browser: true
+  node: true
+
+parser: babel-eslint
+
+parserOptions:
+  ecmaVersion: 7
+  sourceType: module
+  ecmaFeatures:
+    modules: true
+
+plugins: ['html', 'markdown']
+
+overrides: [{
+    files: ["**/*.md"],
+    rules: {
+        no-undef: "off",
+        no-unused-vars: "off",
+        import/no-unresolved: "off"
+    }
+}]
