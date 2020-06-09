@@ -8,6 +8,10 @@ This plugin requires Chart.js 3.0.0 or later. Could work with v2, but it is not 
 
 **NOTE** the plugin does not automatically register.
 
+## Example
+
+![Example chart](https://github.com/kurkle/chartjs-plugin-autocolors/raw/master/sample.png "Example chart")
+
 ## Installation
 
 NPM:
