@@ -1,6 +1,6 @@
 {
   "name": "chartjs-plugin-autocolors",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Automatic color generation for Chart.js",
   "main": "dist/chartjs-plugin-autocolors.js",
   "module": "dist/chartjs-plugin-autocolors.ems.js",
@@ -12,6 +12,9 @@
     "type": "git",
     "url": "git+https://github.com/kurkle/chartjs-plugin-autocolors.git"
   },
+  "files": [
+    "dist/*.js"
+  ],
   "keywords": [
     "chart.js",
     "plugin",
