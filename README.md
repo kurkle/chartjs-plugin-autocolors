@@ -2,7 +2,7 @@
 
 *Automatic color generation for [Chart.js](https://www.chartjs.org)*
 
-The generation os based Janus Trielsen's answer at [Stack Overflow](https://stackoverflow.com/a/13781114/10359775).
+The generation is based on Janus Troelsen's answer at [Stack Overflow](https://stackoverflow.com/a/13781114/10359775).
 
 This plugin requires Chart.js 3.0.0 or later. Could work with v2, but it is not supported.
 
