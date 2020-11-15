@@ -22,10 +22,23 @@ function* colorGen() {
 	}
 }
 
+function setColors(dataset, background, border) {
+	dataset.backgroundColor = dataset.backgroundColor || background;
+	dataset.borderColor = dataset.borderColor || border;
+}
+
+function getNext(color, customize, context) {
+	const c = color.next().value;
+	if (typeof customize === 'function') {
+		return customize(Object.assign({colors: c}, context));
+	}
+	return c;
+}
+
 export default {
 	id: 'autocolors',
 	beforeUpdate(chart, options) {
-		const {mode = 'dataset', enabled = true} = options;
+		const {mode = 'dataset', enabled = true, customize} = options;
 
 		if (!enabled) {
 			return;
@@ -33,23 +46,23 @@ export default {
 
 		const color = colorGen();
 
-		chart.data.datasets.forEach(dataset => {
+		for (const dataset of chart.data.datasets) {
+			if (dataset.backgroundColor && dataset.borderColor) {
+				continue;
+			}
 			if (mode === 'dataset') {
-				const c = color.next().value;
-				dataset.backgroundColor = c.background;
-				dataset.borderColor = c.border;
+				const c = getNext(color, customize, {chart, datasetIndex: dataset.index});
+				setColors(dataset, c.background, c.border);
 			} else {
 				const background = [];
 				const border = [];
-				// eslint-disable-next-line array-callback-return
-				dataset.data.map(() => {
-					const c = color.next().value;
+				for (let i = 0; i < dataset.data.length; i++) {
+					const c = getNext(color, customize, {chart, datasetIndex: dataset.index, dataIndex: i});
 					background.push(c.background);
 					border.push(c.border);
-				});
-				dataset.backgroundColor = background;
-				dataset.borderColor = border;
+				}
+				setColors(dataset, background, border);
 			}
-		});
+		}
 	}
 };

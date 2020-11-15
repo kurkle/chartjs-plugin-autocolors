@@ -50,7 +50,7 @@ All charts
 Chart.register(autocolors);
 ```
 
-Signle chart
+Single chart
 
 ```js
 const chart = new Chart(ctx, {
@@ -92,6 +92,33 @@ const chart = new Chart(ctx, {
 		plugins: {
 			autocolors: {
 				mode: 'data'
+			}
+		}
+	}
+});
+```
+
+### Customize
+
+A `customize` function can be provided to customize the generated colors.
+The function is expected to return object containing `background` and `border` properties,
+with values acceptable as colors by Chart.js.
+
+```js
+const lighten = (color, value) => Chart.helpers.color(color).lighten(value).rgbString();
+
+const chart = new Chart(ctx, {
+	// ...
+	options: {
+		plugins: {
+			autocolors: {
+				customize(context) {
+					const colors = context.colors;
+					return {
+						background: lighten(colors.background, 0.5),
+						border: lighten(colors.border, 0.5)
+					};
+				}
 			}
 		}
 	}

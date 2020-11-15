@@ -16,6 +16,8 @@
 /* eslint-disable no-undef */
 const rand = () => Math.random() * 100;
 
+const lighten = (color, value) => Chart.helpers.color(color).lighten(value).rgbString();
+
 Utils.load(() => {
 	const ctx = document.getElementById('chart-area').getContext('2d');
 	window.myBar = new Chart(ctx, {
@@ -93,6 +95,15 @@ Utils.load(() => {
 			hover: {
 				mode: 'nearest',
 				intersect: true
+			},
+			plugins: {
+				autocolors: {
+					mode: 'dataset',
+					customize(context) {
+						const colors = context.colors;
+						return {background: lighten(colors.background, 0.5), border: lighten(colors.border, 0.5)};
+					}
+				}
 			}
 		},
 		plugins: [
