@@ -14,48 +14,48 @@ const banner = `/*!
  */`;
 
 export default [
-	{
-		input,
-		plugins: [
-			resolve()
-		],
-		output: {
-			name,
-			file: main,
-			banner,
-			format: 'umd',
-			indent: false
-		}
-	},
-	{
-		input,
-		plugins: [
-			resolve(),
-			terser({
-				output: {
-					preamble: banner
-				}
-			})
-		],
-		output: {
-			name,
-			file: main.replace('.js', '.min.js'),
-			format: 'umd',
-			sourcemap: true,
-			indent: false
-		}
-	},
-	{
-		input,
-		plugins: [
-			resolve()
-		],
-		output: {
-			name,
-			file: main.replace('.js', '.esm.js'),
-			banner,
-			format: 'esm',
-			indent: false
-		}
-	},
+  {
+    input,
+    plugins: [
+      resolve()
+    ],
+    output: {
+      name,
+      file: main,
+      banner,
+      format: 'umd',
+      indent: false
+    }
+  },
+  {
+    input,
+    plugins: [
+      resolve(),
+      terser({
+        output: {
+          preamble: banner
+        }
+      })
+    ],
+    output: {
+      name,
+      file: main.replace('.js', '.min.js'),
+      format: 'umd',
+      sourcemap: true,
+      indent: false
+    }
+  },
+  {
+    input,
+    plugins: [
+      resolve()
+    ],
+    output: {
+      name,
+      file: main.replace('.js', '.esm.js'),
+      banner,
+      format: 'esm',
+      indent: false
+    }
+  },
 ];

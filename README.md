@@ -54,10 +54,10 @@ Single chart
 
 ```js
 const chart = new Chart(ctx, {
-	// ...
-	plugins: {
-		autocolors
-	}
+  // ...
+  plugins: {
+    autocolors
+  }
 });
 ```
 
@@ -67,14 +67,14 @@ If registered globally, it might be desirable to disable the autocolors for some
 
 ```js
 const chart = new Chart(ctx, {
-	// ...
-	options: {
-		plugins: {
-			autocolors: {
-				enabled: false
-			}
-		}
-	}
+  // ...
+  options: {
+    plugins: {
+      autocolors: {
+        enabled: false
+      }
+    }
+  }
 });
 ```
 
@@ -87,14 +87,14 @@ There are two modes, `'dataset'` (default) and `'data'`
 
 ```js
 const chart = new Chart(ctx, {
-	// ...
-	options: {
-		plugins: {
-			autocolors: {
-				mode: 'data'
-			}
-		}
-	}
+  // ...
+  options: {
+    plugins: {
+      autocolors: {
+        mode: 'data'
+      }
+    }
+  }
 });
 ```
 
@@ -108,20 +108,20 @@ with values acceptable as colors by Chart.js.
 const lighten = (color, value) => Chart.helpers.color(color).lighten(value).rgbString();
 
 const chart = new Chart(ctx, {
-	// ...
-	options: {
-		plugins: {
-			autocolors: {
-				customize(context) {
-					const colors = context.colors;
-					return {
-						background: lighten(colors.background, 0.5),
-						border: lighten(colors.border, 0.5)
-					};
-				}
-			}
-		}
-	}
+  // ...
+  options: {
+    plugins: {
+      autocolors: {
+        customize(context) {
+          const colors = context.colors;
+          return {
+            background: lighten(colors.background, 0.5),
+            border: lighten(colors.border, 0.5)
+          };
+        }
+      }
+    }
+  }
 });
 ```
 

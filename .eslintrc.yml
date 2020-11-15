@@ -1,5 +1,4 @@
 extends:
-  - chartjs
   - esnext
 
 env:
