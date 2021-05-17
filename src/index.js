@@ -37,7 +37,7 @@ function getNext(color, customize, context) {
 
 export default {
   id: 'autocolors',
-  beforeUpdate(chart, options) {
+  beforeUpdate(chart, args, options) {
     const {mode = 'dataset', enabled = true, customize} = options;
 
     if (!enabled) {
