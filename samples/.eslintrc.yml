@@ -1,0 +1,7 @@
+globals:
+  Chart: true
+
+rules:
+  indent: "off"
+  no-new: "off"
+  no-var: "off"
