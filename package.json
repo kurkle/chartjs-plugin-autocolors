@@ -3,7 +3,7 @@
   "version": "0.0.4",
   "description": "Automatic color generation for Chart.js",
   "main": "dist/chartjs-plugin-autocolors.js",
-  "module": "dist/chartjs-plugin-autocolors.ems.js",
+  "module": "dist/chartjs-plugin-autocolors.esm.js",
   "scripts": {
     "build": "rollup -c",
     "lint": "eslint samples/**/*.html samples/**/*.js src/**/*.js **/*.md"
