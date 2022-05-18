@@ -55,9 +55,9 @@ Single chart
 ```js
 const chart = new Chart(ctx, {
   // ...
-  plugins: {
+  plugins: [
     autocolors
-  }
+  ]
 });
 ```
 
