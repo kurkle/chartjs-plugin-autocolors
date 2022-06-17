@@ -1,6 +1,6 @@
 {
   "name": "chartjs-plugin-autocolors",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Automatic color generation for Chart.js",
   "main": "dist/chartjs-plugin-autocolors.js",
   "module": "dist/chartjs-plugin-autocolors.esm.js",
@@ -30,9 +30,9 @@
   },
   "homepage": "https://github.com/kurkle/chartjs-plugin-autocolors#readme",
   "devDependencies": {
-    "@kurkle/color": "^0.1.9",
+    "@kurkle/color": "^0.2.1",
     "@rollup/plugin-node-resolve": "^13.0.4",
-    "eslint": "^8.5.0",
+    "eslint": "^8.17.0",
     "eslint-config-chartjs": "^0.3.0",
     "eslint-plugin-es": "^4.1.0",
     "eslint-plugin-html": "^6.1.2",

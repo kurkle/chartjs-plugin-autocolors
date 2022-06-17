@@ -125,6 +125,23 @@ const chart = new Chart(ctx, {
 });
 ```
 
+### Offset
+
+`offset` option can be used to offset the color generation by a number of colors.
+
+```js
+const chart = new Chart(ctx, {
+  // ...
+  options: {
+    plugins: {
+      autocolors: {
+        offset: 5
+      }
+    }
+  }
+});
+```
+
 ## Browser compatibility
 
 This plugin uses a generator function, so it is not compatible with Internet Explorer.

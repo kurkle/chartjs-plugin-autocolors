@@ -45,6 +45,11 @@ export default {
     }
 
     const color = colorGen();
+    if (options.offset) {
+      for (let i = 0; i < options.offset; i++) {
+        color.next();
+      }
+    }
 
     for (const dataset of chart.data.datasets) {
       if (dataset.backgroundColor && dataset.borderColor) {
