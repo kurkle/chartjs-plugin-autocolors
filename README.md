@@ -17,7 +17,7 @@ This plugin requires Chart.js 3.0.0 or later. Could work with v2, but it is not 
 NPM:
 
 ```bash
-npm i --save-dev chartjs-plugin-autocolors
+npm i --save chartjs-plugin-autocolors
 ```
 
 CDN:
