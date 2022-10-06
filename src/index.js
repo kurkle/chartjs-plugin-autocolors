@@ -44,10 +44,12 @@ export default {
       return;
     }
 
-    const color = colorGen();
+    if (!chart._autocolor) {
+      chart._autocolor = colorGen();
+    }
     if (options.offset) {
       for (let i = 0; i < options.offset; i++) {
-        color.next();
+        chart._autocolor.next();
       }
     }
 
@@ -56,13 +58,13 @@ export default {
         continue;
       }
       if (mode === 'dataset') {
-        const c = getNext(color, customize, {chart, datasetIndex: dataset.index});
+        const c = getNext(chart._autocolor, customize, {chart, datasetIndex: dataset.index});
         setColors(dataset, c.background, c.border);
       } else {
         const background = [];
         const border = [];
         for (let i = 0; i < dataset.data.length; i++) {
-          const c = getNext(color, customize, {chart, datasetIndex: dataset.index, dataIndex: i});
+          const c = getNext(chart._autocolor, customize, {chart, datasetIndex: dataset.index, dataIndex: i});
           background.push(c.background);
           border.push(c.border);
         }
