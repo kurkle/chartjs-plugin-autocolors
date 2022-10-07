@@ -46,10 +46,10 @@ export default {
 
     if (!chart._autocolor) {
       chart._autocolor = colorGen();
-    }
-    if (options.offset) {
-      for (let i = 0; i < options.offset; i++) {
-        chart._autocolor.next();
+      if (options.offset) {
+        for (let i = 0; i < options.offset; i++) {
+          chart._autocolor.next();
+        }
       }
     }
 
