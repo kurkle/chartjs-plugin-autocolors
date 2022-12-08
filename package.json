@@ -2,18 +2,24 @@
   "name": "chartjs-plugin-autocolors",
   "version": "0.0.8",
   "description": "Automatic color generation for Chart.js",
-  "main": "dist/chartjs-plugin-autocolors.js",
-  "module": "dist/chartjs-plugin-autocolors.esm.js",
+  "type": "module",
+  "main": "dist/chartjs-plugin-autocolors.esm.js",
+  "jsdelivr": "dist/dist/chartjs-plugin-autocolors.min.js",
+  "unpkg": "dist/dist/chartjs-plugin-autocolors.min.js",
+  "exports": {
+    ".": "./dist/chartjs-plugin-autocolors.esm.js"
+  },
   "scripts": {
     "build": "rollup -c",
-    "lint": "eslint samples/**/*.html samples/**/*.js src/**/*.js **/*.md"
+    "lint": "eslint samples/**/*.html samples/**/*.js src/**/*.js **/*.md",
+    "test": "npm run lint"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kurkle/chartjs-plugin-autocolors.git"
   },
   "files": [
-    "dist/*.js"
+    "dist/*"
   ],
   "keywords": [
     "chart.js",
@@ -32,8 +38,8 @@
   "devDependencies": {
     "@kurkle/color": "^0.3.0",
     "@rollup/plugin-node-resolve": "^15.0.1",
-    "@rollup/plugin-terser": "^0.2.0",
-    "eslint": "^8.17.0",
+    "@rollup/plugin-terser": "^0.1.0",
+    "eslint": "^8.29.0",
     "eslint-config-chartjs": "^0.3.0",
     "eslint-plugin-es": "^4.1.0",
     "eslint-plugin-html": "^7.1.0",

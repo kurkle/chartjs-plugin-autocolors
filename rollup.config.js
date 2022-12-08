@@ -1,8 +1,8 @@
-/* eslint-env es6 */
-
 import resolve from '@rollup/plugin-node-resolve';
-import {terser} from 'rollup-plugin-terser';
-import {name, version, homepage, main} from './package.json';
+import terser from '@rollup/plugin-terser';
+import {readFileSync} from 'fs';
+
+const {name, version, homepage, main} = JSON.parse(readFileSync('./package.json'));
 
 const input = 'src/index.js';
 
@@ -23,6 +23,19 @@ export default [
       name,
       file: main,
       banner,
+      format: 'esm',
+      indent: false
+    }
+  },
+  {
+    input,
+    plugins: [
+      resolve()
+    ],
+    output: {
+      name,
+      file: main.replace('.esm.js', '.js'),
+      banner,
       format: 'umd',
       indent: false
     }
@@ -39,22 +52,9 @@ export default [
     ],
     output: {
       name,
-      file: main.replace('.js', '.min.js'),
+      file: main.replace('.esm.js', '.min.js'),
       format: 'umd',
       sourcemap: true,
-      indent: false
-    }
-  },
-  {
-    input,
-    plugins: [
-      resolve()
-    ],
-    output: {
-      name,
-      file: main.replace('.js', '.esm.js'),
-      banner,
-      format: 'esm',
       indent: false
     }
   },
