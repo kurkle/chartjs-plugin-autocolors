@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Automatically generated colors</title>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.js" integrity="sha256-+48ixHHdEyikQezynIIzVjU1eGcJqNNEhQgbvKOumAY=" crossorigin="anonymous"></script>
+		<script src="utils.js"></script>
+		<link rel="stylesheet" type="text/css" href="style.css"></link>
+	</head>
+	<body>
+		<div class="canvas-holder">
+			<canvas id="chart1" width="800" height="400"></canvas>
+		</div>
+		<div class="canvas-holder">
+			<canvas id="chart2" width="800" height="400"></canvas>
+		</div>
+		<div class="canvas-holder">
+			<canvas id="chart3" width="800" height="400"></canvas>
+		</div>
+
+
+	<script>
+/* eslint-disable no-undef */
+const rand = () => Math.random() * 100;
+const datasets1 = [];
+const datasets2 = [];
+const datasets3 = [];
+for (let i = 1; i <= 24; i++) {
+	const value = rand();
+	datasets1.push({label: `Bar ${i}`, data: [value]});
+	datasets2.push({label: `Bar ${i}`, data: [value]});
+	datasets3.push({label: `Bar ${i}`, data: [value]});
+}
+
+Utils.load(() => {
+	Chart.register(window['chartjs-plugin-autocolors']);
+
+	window.myBar = new Chart('chart1', {
+		type: 'bar',
+		data: {
+			labels: ['color'],
+			datasets: datasets1
+		},
+		options: {
+			elements: {
+				rectangle: {
+					borderWidth: 2
+				}
+			},
+			hover: {
+				mode: 'nearest',
+				intersect: true
+			},
+			plugins: {
+				autocolors: {
+					repeat: 1
+				},
+				legend: false,
+				title: {
+					display: true,
+					legend: false,
+					text: 'repeat: 1'
+				}
+			}
+		}
+	});
+	window.myBar1 = new Chart('chart2', {
+		type: 'bar',
+		data: {
+			labels: ['color'],
+			datasets: datasets2
+		},
+		options: {
+			elements: {
+				rectangle: {
+					borderWidth: 2
+				}
+			},
+			hover: {
+				mode: 'nearest',
+				intersect: true
+			},
+			plugins: {
+				autocolors: {
+					repeat: 2
+				},
+				legend: false,
+				title: {
+					display: true,
+					text: 'repeat: 2'
+				}
+			}
+		}
+	});
+	window.myBar2 = new Chart('chart3', {
+		type: 'bar',
+		data: {
+			labels: ['color'],
+			datasets: datasets3
+		},
+		options: {
+			elements: {
+				rectangle: {
+					borderWidth: 2
+				}
+			},
+			hover: {
+				mode: 'nearest',
+				intersect: true
+			},
+			plugins: {
+				autocolors: {
+					repeat: 3
+				},
+				legend: false,
+				title: {
+					display: true,
+					text: 'offset: 3'
+				}
+			}
+		}
+	});
+});
+	</script>
+	</body>
+</html>

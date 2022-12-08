@@ -2,6 +2,8 @@
 
 *Automatic color generation for [Chart.js](https://www.chartjs.org)*
 
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/kurkle/chartjs-plugin-autocolors/CI)
+
 The generation is based on Janus Troelsen's answer at [Stack Overflow](https://stackoverflow.com/a/13781114/10359775).
 
 This plugin requires Chart.js 3.0.0 or later. Could work with v2, but it is not supported.
@@ -136,6 +138,24 @@ const chart = new Chart(ctx, {
     plugins: {
       autocolors: {
         offset: 5
+      }
+    }
+  }
+});
+```
+
+### Repeat
+
+Sometimes you might need to color multiple adjacent datasets with same color. The `repeat` option is for that use case.
+
+
+```js
+const chart = new Chart(ctx, {
+  // ...
+  options: {
+    plugins: {
+      autocolors: {
+        repeat: 2
       }
     }
   }

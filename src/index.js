@@ -10,14 +10,18 @@ function* hueGen() {
   }
 }
 
-function* colorGen() {
+function* colorGen(repeat = 1) {
   const hue = hueGen();
   let h = hue.next();
   while (!h.done) {
     let rgb = hsv2rgb(Math.round(h.value * 360), 0.6, 0.8);
-    yield {background: rgbString({r: rgb[0], g: rgb[1], b: rgb[2], a: 192}), border: rgbString({r: rgb[0], g: rgb[1], b: rgb[2], a: 144})};
+    for (let i = 0; i < repeat; i++) {
+      yield {background: rgbString({r: rgb[0], g: rgb[1], b: rgb[2], a: 192}), border: rgbString({r: rgb[0], g: rgb[1], b: rgb[2], a: 144})};
+    }
     rgb = hsv2rgb(Math.round(h.value * 360), 0.6, 0.5);
-    yield {background: rgbString({r: rgb[0], g: rgb[1], b: rgb[2], a: 192}), border: rgbString({r: rgb[0], g: rgb[1], b: rgb[2], a: 144})};
+    for (let i = 0; i < repeat; i++) {
+      yield {background: rgbString({r: rgb[0], g: rgb[1], b: rgb[2], a: 192}), border: rgbString({r: rgb[0], g: rgb[1], b: rgb[2], a: 144})};
+    }
     h = hue.next();
   }
 }
@@ -38,14 +42,14 @@ function getNext(color, customize, context) {
 export default {
   id: 'autocolors',
   beforeUpdate(chart, args, options) {
-    const {mode = 'dataset', enabled = true, customize} = options;
+    const {mode = 'dataset', enabled = true, customize, repeat} = options;
 
     if (!enabled) {
       return;
     }
 
     if (!chart._autocolor) {
-      chart._autocolor = colorGen();
+      chart._autocolor = colorGen(repeat);
       if (options.offset) {
         for (let i = 0; i < options.offset; i++) {
           chart._autocolor.next();
