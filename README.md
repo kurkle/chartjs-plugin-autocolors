@@ -82,6 +82,8 @@ const chart = new Chart(ctx, {
 
 ### Mode
 
+**NOTE:** `'dataset'` mode does not work properly for **Pie / Doughnut** charts, so using `'data'` mode with those charts is advised.
+
 There are two modes, `'dataset'` (default) and `'data'`
 
 - In `'dataset'` mode, a new color is picked for each dataset.
