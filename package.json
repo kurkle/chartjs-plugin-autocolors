@@ -1,13 +1,14 @@
 {
   "name": "chartjs-plugin-autocolors",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Automatic color generation for Chart.js",
   "type": "module",
   "main": "dist/chartjs-plugin-autocolors.esm.js",
-  "jsdelivr": "dist/dist/chartjs-plugin-autocolors.min.js",
-  "unpkg": "dist/dist/chartjs-plugin-autocolors.min.js",
+  "jsdelivr": "dist/chartjs-plugin-autocolors.min.js",
+  "unpkg": "dist/chartjs-plugin-autocolors.min.js",
   "exports": {
-    ".": "./dist/chartjs-plugin-autocolors.esm.js"
+    "import": "./dist/chartjs-plugin-autocolors.esm.js",
+    "require": "./dist/chartjs-plugin-autocolors.min.js"
   },
   "scripts": {
     "build": "rollup -c",
