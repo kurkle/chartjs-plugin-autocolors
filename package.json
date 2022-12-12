@@ -5,9 +5,11 @@
   "type": "module",
   "main": "dist/chartjs-plugin-autocolors.cjs",
   "module": "dist/chartjs-plugin-autocolors.esm.js",
+  "types": "types/index.esm.d.ts",
   "jsdelivr": "dist/chartjs-plugin-autocolors.min.js",
   "unpkg": "dist/chartjs-plugin-autocolors.min.js",
   "exports": {
+    "types": "./types/index.esm.d.ts",
     "import": "./dist/chartjs-plugin-autocolors.esm.js",
     "require": "./dist/chartjs-plugin-autocolors.cjs",
     "script": "./dist/chartjs-plugin-autocolors.min.js"
@@ -15,7 +17,11 @@
   "sideEffects": false,
   "scripts": {
     "build": "rollup -c",
-    "lint": "eslint samples/**/*.html samples/**/*.js src/**/*.js **/*.md",
+    "lint": "concurrently -r \"npm:lint-*\"",
+    "lint-js": "eslint \"src/**/*.js\"",
+    "lint-md": "eslint \"**/*.md\"",
+    "lint-types": "eslint \"types/**/*.ts\" && tsc -p types/tests/",
+    "lint-html": "eslint \"samples/**/*.html\"",
     "test": "npm run lint"
   },
   "repository": {
@@ -23,7 +29,8 @@
     "url": "git+https://github.com/kurkle/chartjs-plugin-autocolors.git"
   },
   "files": [
-    "dist/*"
+    "dist/*",
+    "types/index.esm.d.ts"
   ],
   "keywords": [
     "chart.js",
@@ -43,12 +50,15 @@
     "@kurkle/color": "^0.3.1",
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@rollup/plugin-terser": "^0.1.0",
+    "@typescript-eslint/eslint-plugin": "^5.46.0",
+    "concurrently": "^7.6.0",
     "eslint": "^8.29.0",
     "eslint-config-chartjs": "^0.3.0",
     "eslint-plugin-es": "^4.1.0",
     "eslint-plugin-html": "^7.1.0",
     "eslint-plugin-markdown": "^3.0.0",
-    "rollup": "^3.7.0"
+    "rollup": "^3.7.0",
+    "typescript": "^4.9.4"
   },
   "peerDependencies": {
     "@kurkle/color": "^0.3.1",

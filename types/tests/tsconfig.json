@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    /* Type Checking */
+    "strict": true,
+    "alwaysStrict": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+
+    /* Modules */
+    "baseUrl": ".",
+    "module": "ES6",
+    "moduleResolution": "Node",
+
+    /* Emit */
+    "noEmit": true,
+
+    /* JavaScript Support */
+    "allowJs": true,
+    "checkJs": true,
+
+    /* Completeness */
+    "skipLibCheck": true,
+
+    /* Language and Environment */
+    "target": "ESNext",
+    "lib": ["es2018", "DOM"],
+  },
+  "include": [
+    "../index.esm.d.ts",
+    "./**/*.ts",
+  ]
+}
