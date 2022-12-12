@@ -12,7 +12,7 @@ This plugin requires Chart.js 3.0.0 or later. Could work with v2, but it is not 
 
 ## Example
 
-![Example chart](https://github.com/kurkle/chartjs-plugin-autocolors/raw/master/sample.png "Example chart")
+![Example chart](https://github.com/kurkle/chartjs-plugin-autocolors/raw/main/sample.png "Example chart")
 
 ## Installation
 
@@ -170,4 +170,4 @@ This plugin uses a generator function, so it is not compatible with Internet Exp
 
 ## License
 
-`chartjs-plugin-autocolors.js` is available under the [MIT license](https://github.com/kurkle/chartjs-plugin-autocolors/blob/master/LICENSE).
+`chartjs-plugin-autocolors.js` is available under the [MIT license](https://github.com/kurkle/chartjs-plugin-autocolors/blob/main/LICENSE).
