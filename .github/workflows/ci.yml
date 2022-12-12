@@ -19,5 +19,5 @@ jobs:
     - run: |
         npm ci
         npm run build
-        npm test
+        xvfb-run --auto-servernum npm test
       shell: bash
