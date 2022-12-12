@@ -7,6 +7,7 @@ module.exports = {
     },
     options: {
       borderWidth: 2,
+      plugins: {legend: false},
       scales: {
         x: {
           display: false,

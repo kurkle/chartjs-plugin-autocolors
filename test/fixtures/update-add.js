@@ -16,6 +16,7 @@ module.exports = {
     options: {
       borderWidth: 2,
       events: [], // disable events for easier image saving
+      plugins: {legend: false},
       scales: {
         x: {
           display: false,
