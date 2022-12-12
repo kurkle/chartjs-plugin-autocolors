@@ -1,6 +1,6 @@
 {
   "name": "chartjs-plugin-autocolors",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "Automatic color generation for Chart.js",
   "type": "module",
   "main": "dist/chartjs-plugin-autocolors.cjs",
