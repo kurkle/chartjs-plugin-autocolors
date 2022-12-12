@@ -29,6 +29,7 @@ function* colorGen(repeat = 1) {
 function setColors(dataset, background, border) {
   dataset.backgroundColor = dataset.backgroundColor || background;
   dataset.borderColor = dataset.borderColor || border;
+  return dataset.backgroundColor === background && dataset.borderColor === border;
 }
 
 function getNext(color, customize, context) {
@@ -48,29 +49,30 @@ export default {
       return;
     }
 
-    if (!chart._autocolor) {
-      chart._autocolor = colorGen(repeat);
-      if (options.offset) {
-        for (let i = 0; i < options.offset; i++) {
-          chart._autocolor.next();
-        }
+    const gen = colorGen(repeat);
+
+    if (options.offset) {
+      // offset the color generation by n colors
+      for (let i = 0; i < options.offset; i++) {
+        gen.next();
       }
     }
 
+    const datasetMode = mode === 'dataset';
+
+    let c = getNext(gen, customize, {chart, datasetIndex: 0, dataIndex: datasetMode ? undefined : 0});
     for (const dataset of chart.data.datasets) {
-      if (dataset.backgroundColor && dataset.borderColor) {
-        continue;
-      }
-      if (mode === 'dataset') {
-        const c = getNext(chart._autocolor, customize, {chart, datasetIndex: dataset.index});
-        setColors(dataset, c.background, c.border);
+      if (datasetMode) {
+        if (setColors(dataset, c.background, c.border)) {
+          c = getNext(gen, customize, {chart, datasetIndex: dataset.index});
+        }
       } else {
         const background = [];
         const border = [];
         for (let i = 0; i < dataset.data.length; i++) {
-          const c = getNext(chart._autocolor, customize, {chart, datasetIndex: dataset.index, dataIndex: i});
           background.push(c.background);
           border.push(c.border);
+          c = getNext(gen, customize, {chart, datasetIndex: dataset.index, dataIndex: i});
         }
         setColors(dataset, background, border);
       }
