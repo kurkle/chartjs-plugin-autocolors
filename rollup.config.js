@@ -2,44 +2,51 @@ import resolve from '@rollup/plugin-node-resolve';
 import terser from '@rollup/plugin-terser';
 import {readFileSync} from 'fs';
 
-const {name, version, homepage, main} = JSON.parse(readFileSync('./package.json'));
-
-const input = 'src/index.js';
+const {author, name, version, homepage, main, module, jsdelivr, license} = JSON.parse(readFileSync('./package.json'));
 
 const banner = `/*!
  * ${name} v${version}
  * ${homepage}
- * (c) ${(new Date(process.env.SOURCE_DATE_EPOCH ? (process.env.SOURCE_DATE_EPOCH * 1000) : new Date().getTime())).getFullYear()} Jukka Kurkela
- * Released under the MIT License
+ * (c) ${(new Date(process.env.SOURCE_DATE_EPOCH ? (process.env.SOURCE_DATE_EPOCH * 1000) : new Date().getTime())).getFullYear()} ${author}
+ * Released under the ${license} license
  */`;
 
+const input = 'src/index.js';
+
+const commonOutputOptions = {
+  banner,
+  format: 'umd',
+  indent: false,
+  name,
+  sourcemap: true,
+};
+
 export default [
+  // ESM
   {
     input,
     plugins: [
       resolve()
     ],
+    external: _ => (/node_modules/).test(_),
     output: {
-      name,
-      file: main,
-      banner,
+      ...commonOutputOptions,
+      file: module,
       format: 'esm',
-      indent: false
     }
   },
+  // UMD
   {
     input,
     plugins: [
       resolve()
     ],
     output: {
-      name,
-      file: main.replace('.esm.js', '.js'),
-      banner,
-      format: 'umd',
-      indent: false
+      ...commonOutputOptions,
+      file: main,
     }
   },
+  // UMD minified
   {
     input,
     plugins: [
@@ -51,11 +58,9 @@ export default [
       })
     ],
     output: {
-      name,
-      file: main.replace('.esm.js', '.min.js'),
-      format: 'umd',
-      sourcemap: true,
-      indent: false
+      ...commonOutputOptions,
+      file: jsdelivr,
+      banner: undefined,
     }
   },
 ];
