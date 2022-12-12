@@ -2,7 +2,7 @@
 
 (function(Utils) {
   const localUrl = '../dist/chartjs-plugin-autocolors.js';
-  const remoteUrl = 'https://cdn.jsdelivr.net/npm/chartjs-chart-matrix/dist/chartjs-plugin-autocolors.js';
+  const remoteUrl = 'https://cdn.jsdelivr.net/npm/chartjs-plugin-autocolors/dist/chartjs-plugin-autocolors.js';
 
   function addScript(url, done, error) {
     const head = document.getElementsByTagName('head')[0];
