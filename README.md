@@ -2,7 +2,7 @@
 
 *Automatic color generation for [Chart.js](https://www.chartjs.org)*
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/kurkle/chartjs-plugin-autocolors/CI)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/kurkle/chartjs-plugin-autocolors/ci.yml)
 
 The generation is based on Janus Troelsen's answer at [Stack Overflow](https://stackoverflow.com/a/13781114/10359775).
 
