@@ -84,10 +84,11 @@ const chart = new Chart(ctx, {
 
 **NOTE:** `'dataset'` mode does not work properly for **Pie / Doughnut** charts, so using `'data'` mode with those charts is advised.
 
-There are two modes, `'dataset'` (default) and `'data'`
+There are two modes, `'dataset'` (default) `'data'` and `'label'`
 
 - In `'dataset'` mode, a new color is picked for each dataset.
 - In `'data'` mode, an array of colors, equivalent to the length of data is provided for each dataset.
+- In `'label'` mode, color is picked for each different dataset label.
 
 ```js
 const chart = new Chart(ctx, {

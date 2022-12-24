@@ -14,7 +14,7 @@ interface ColorsDescriptor {
 
 interface AutocolorsOptions {
   enabled?: boolean,
-  mode?: 'dataset' | 'data',
+  mode?: 'dataset' | 'data' | 'label',
   offset?: number,
   repeat?: number,
   customize?: (ctx: AutocolorsContext, options: AutocolorsOptions) => ColorsDescriptor
