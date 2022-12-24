@@ -58,6 +58,10 @@ export default {
       }
     }
 
+    if (mode === 'label') {
+      return labelMode(chart, gen, customize);
+    }
+
     const datasetMode = mode === 'dataset';
 
     let c = getNext(gen, customize, {chart, datasetIndex: 0, dataIndex: datasetMode ? undefined : 0});
@@ -79,3 +83,15 @@ export default {
     }
   }
 };
+
+function labelMode(chart, gen, customize) {
+  const colors = {};
+  for (const dataset of chart.data.datasets) {
+    const label = dataset.label ?? '';
+    if (!colors[label]) {
+      colors[label] = getNext(gen, customize, {chart, datasetIndex: 0, dataIndex: undefined, label});
+    }
+    const c = colors[label];
+    setColors(dataset, c.background, c.border);
+  }
+}
