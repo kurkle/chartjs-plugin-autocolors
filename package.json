@@ -1,6 +1,6 @@
 {
   "name": "chartjs-plugin-autocolors",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Automatic color generation for Chart.js",
   "type": "module",
   "main": "dist/chartjs-plugin-autocolors.cjs",
@@ -70,7 +70,7 @@
     "karma-firefox-launcher": "^2.1.2",
     "karma-jasmine": "^5.1.0",
     "karma-jasmine-html-reporter": "^2.0.0",
-    "karma-rollup-preprocessor": "^7.0.7",
+    "karma-rollup-preprocessor": "7.0.7",
     "karma-spec-reporter": "^0.0.36",
     "rollup": "^3.7.0",
     "rollup-plugin-istanbul": "^4.0.0",
@@ -78,6 +78,6 @@
   },
   "peerDependencies": {
     "@kurkle/color": "^0.3.1",
-    "chart.js": "^4.0.1"
+    "chart.js": ">=2"
   }
 }
