@@ -2,10 +2,12 @@ import {hsv2rgb, rgbString} from '@kurkle/color';
 
 function* hueGen() {
   yield 0;
-  for (let i = 1; i < 10; i++) {
-    const d = 1 << i;
-    for (let j = 1; j <= d; j += 2) {
-      yield j / d;
+  while (true) {
+    for (let i = 1; i < 10; i++) {
+      const d = 1 << i;
+      for (let j = 1; j <= d; j += 2) {
+        yield j / d;
+      }
     }
   }
 }
