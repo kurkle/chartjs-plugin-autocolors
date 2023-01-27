@@ -18,7 +18,7 @@
   "scripts": {
     "autobuild": "rollup -c -w",
     "build": "rollup -c",
-    "dev": "karma start ./karma.conf.cjs --no-signle-run --auto-watch --browsers chrome",
+    "dev": "karma start ./karma.conf.cjs --no-single-run --auto-watch --browsers chrome",
     "lint": "concurrently -r \"npm:lint-*\"",
     "lint-js": "eslint \"src/**/*.js\"",
     "lint-md": "eslint \"**/*.md\"",
@@ -26,7 +26,7 @@
     "lint-html": "eslint \"samples/**/*.html\"",
     "test": "cross-env NODE_ENV=test concurrently \"npm:test-*\"",
     "test-lint": "npm run lint",
-    "test-karma": "karma start ./karma.conf.cjs --auto-watch --single-run"
+    "test-karma": "karma start ./karma.conf.cjs --no-auto-watch --single-run"
   },
   "repository": {
     "type": "git",

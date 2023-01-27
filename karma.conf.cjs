@@ -31,14 +31,10 @@ module.exports = async function(karma) {
       'test/specs/**/*.js'
     ],
 
-    // Explicitly disable hardware acceleration to make image
-    // diff more stable when ran on Travis and dev machine.
-    // https://github.com/chartjs/Chart.js/pull/5629
     customLaunchers: {
       chrome: {
         base: 'Chrome',
         flags: [
-          '--disable-accelerated-2d-canvas',
           '--disable-background-timer-throttling',
           '--disable-backgrounding-occluded-windows',
           '--disable-renderer-backgrounding'
