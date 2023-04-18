@@ -7,12 +7,12 @@ declare module 'chart.js' {
   }
 }
 
-interface ColorsDescriptor {
+export interface ColorsDescriptor {
   background: string
   border: string
 }
 
-interface AutocolorsOptions {
+export interface AutocolorsOptions {
   enabled?: boolean,
   mode?: 'dataset' | 'data' | 'label',
   offset?: number,
@@ -20,9 +20,15 @@ interface AutocolorsOptions {
   customize?: (ctx: AutocolorsContext, options: AutocolorsOptions) => ColorsDescriptor
 }
 
-interface AutocolorsContext {
+export interface AutocolorsContext {
   chart: Chart
   colors: ColorsDescriptor
   dataIndex?: number
   datasetIndex: number
 }
+
+/**
+ * Exports the plugin class as default
+ */
+// eslint-disable-next-line @typescript-eslint/no-use-before-define
+export { autocolorPlugin as default };
