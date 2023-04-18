@@ -42,7 +42,7 @@ function getNext(color, customize, context) {
   return c;
 }
 
-export default {
+var autocolorPlugin = {
   id: 'autocolors',
   beforeUpdate(chart, args, options) {
     const {mode = 'dataset', enabled = true, customize, repeat} = options;
@@ -97,3 +97,5 @@ function labelMode(chart, gen, customize) {
     setColors(dataset, c.background, c.border);
   }
 }
+
+export {autocolorPlugin as default};
