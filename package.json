@@ -57,7 +57,7 @@
     "@rollup/plugin-terser": "^0.4.0",
     "@typescript-eslint/eslint-plugin": "^5.46.0",
     "chartjs-test-utils": "^0.5.0",
-    "concurrently": "^7.6.0",
+    "concurrently": "^9.0.0",
     "cross-env": "^7.0.3",
     "eslint": "^8.29.0",
     "eslint-config-chartjs": "^0.3.0",
