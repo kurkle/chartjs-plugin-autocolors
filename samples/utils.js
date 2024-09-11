@@ -1,8 +1,8 @@
 'use strict';
 
 (function(Utils) {
-  const localUrl = '../dist/chartjs-plugin-autocolors.js';
-  const remoteUrl = 'https://cdn.jsdelivr.net/npm/chartjs-plugin-autocolors/dist/chartjs-plugin-autocolors.js';
+  const localUrl = '../dist/chartjs-plugin-autocolors.cjs';
+  const remoteUrl = 'https://cdn.jsdelivr.net/npm/chartjs-plugin-autocolors/dist/chartjs-plugin-autocolors.cjs';
 
   function addScript(url, done, error) {
     const head = document.getElementsByTagName('head')[0];

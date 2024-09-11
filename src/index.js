@@ -28,9 +28,14 @@ function* colorGen(repeat = 1) {
   }
 }
 
-function setColors(dataset, background, border) {
-  dataset.backgroundColor = dataset.backgroundColor || background;
-  dataset.borderColor = dataset.borderColor || border;
+function setColors(dataset, background, border, mode) {
+  if (mode === 'data') {
+    dataset.backgroundColor = background;
+    dataset.border = border;
+  } else {
+    dataset.backgroundColor = dataset.backgroundColor || background;
+    dataset.borderColor = dataset.borderColor || border;
+  }
   return dataset.backgroundColor === background && dataset.borderColor === border;
 }
 
@@ -48,7 +53,7 @@ function defaultMode(chart, gen, customize, mode) {
   let c = getNext(gen, customize, {chart, datasetIndex: 0, dataIndex: datasetMode ? undefined : 0});
   for (const dataset of chart.data.datasets) {
     if (datasetMode) {
-      if (setColors(dataset, c.background, c.border)) {
+      if (setColors(dataset, c.background, c.border, mode)) {
         c = getNext(gen, customize, {chart, datasetIndex: dataset.index});
       }
     } else {
@@ -59,13 +64,13 @@ function defaultMode(chart, gen, customize, mode) {
         border.push(c.border);
         c = getNext(gen, customize, {chart, datasetIndex: dataset.index, dataIndex: i});
       }
-      setColors(dataset, background, border);
+      setColors(dataset, background, border, mode);
     }
   }
 
 }
 
-function labelMode(chart, gen, customize) {
+function labelMode(chart, gen, customize, mode) {
   const colors = {};
   for (const dataset of chart.data.datasets) {
     const label = dataset.label ?? '';
@@ -73,7 +78,7 @@ function labelMode(chart, gen, customize) {
       colors[label] = getNext(gen, customize, {chart, datasetIndex: 0, dataIndex: undefined, label});
     }
     const c = colors[label];
-    setColors(dataset, c.background, c.border);
+    setColors(dataset, c.background, c.border, mode);
   }
 }
 
@@ -96,10 +101,10 @@ const autocolorPlugin = {
     }
 
     if (mode === 'label') {
-      return labelMode(chart, gen, customize);
+      return labelMode(chart, gen, customize, mode);
     }
     return defaultMode(chart, gen, customize, mode);
-  }
+  },
 };
 
 export {autocolorPlugin as default};

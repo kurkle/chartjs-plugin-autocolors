@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Automatically generated colors</title>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js" integrity="sha256-ErZ09KkZnzjpqcane4SCyyHsKAXMvID9/xwbl/Aq1pc=" crossorigin="anonymous"></script>
+		<script src="utils.js"></script>
+		<link rel="stylesheet" type="text/css" href="style.css"></link>
+	</head>
+	<body>
+		<div id="canvas-holder">
+			<canvas id="chart-area" width="800" height="400"></canvas>
+		</div>
+		<button onclick="update()">Update</button>
+
+
+	<script>
+
+Utils.load(() => {
+	const ctx = document.getElementById('chart-area').getContext('2d');
+	window.myPie = new Chart(ctx, {
+		type: 'pie',
+		data: {
+			// labels: ['color'],
+			datasets: [{
+				label: 'Pie 1',
+				data: [],
+			}]
+		},
+		options: {
+			plugins: {
+				autocolors: {
+					enabled: true,
+					mode: 'data',
+				}
+			}
+		},
+		plugins: [
+			window['chartjs-plugin-autocolors']
+		]
+	});
+});
+
+window.update = function() {
+	window.myPie.data.datasets[0].data.push(1, 2, 3);
+	window.myPie.update();
+};
+	</script>
+	</body>
+</html>
