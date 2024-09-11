@@ -42,7 +42,42 @@ function getNext(color, customize, context) {
   return c;
 }
 
-var autocolorPlugin = {
+function defaultMode(chart, gen, customize, mode) {
+  const datasetMode = mode === 'dataset';
+
+  let c = getNext(gen, customize, {chart, datasetIndex: 0, dataIndex: datasetMode ? undefined : 0});
+  for (const dataset of chart.data.datasets) {
+    if (datasetMode) {
+      if (setColors(dataset, c.background, c.border)) {
+        c = getNext(gen, customize, {chart, datasetIndex: dataset.index});
+      }
+    } else {
+      const background = [];
+      const border = [];
+      for (let i = 0; i < dataset.data.length; i++) {
+        background.push(c.background);
+        border.push(c.border);
+        c = getNext(gen, customize, {chart, datasetIndex: dataset.index, dataIndex: i});
+      }
+      setColors(dataset, background, border);
+    }
+  }
+
+}
+
+function labelMode(chart, gen, customize) {
+  const colors = {};
+  for (const dataset of chart.data.datasets) {
+    const label = dataset.label ?? '';
+    if (!colors[label]) {
+      colors[label] = getNext(gen, customize, {chart, datasetIndex: 0, dataIndex: undefined, label});
+    }
+    const c = colors[label];
+    setColors(dataset, c.background, c.border);
+  }
+}
+
+const autocolorPlugin = {
   id: 'autocolors',
   beforeUpdate(chart, args, options) {
     const {mode = 'dataset', enabled = true, customize, repeat} = options;
@@ -63,39 +98,8 @@ var autocolorPlugin = {
     if (mode === 'label') {
       return labelMode(chart, gen, customize);
     }
-
-    const datasetMode = mode === 'dataset';
-
-    let c = getNext(gen, customize, {chart, datasetIndex: 0, dataIndex: datasetMode ? undefined : 0});
-    for (const dataset of chart.data.datasets) {
-      if (datasetMode) {
-        if (setColors(dataset, c.background, c.border)) {
-          c = getNext(gen, customize, {chart, datasetIndex: dataset.index});
-        }
-      } else {
-        const background = [];
-        const border = [];
-        for (let i = 0; i < dataset.data.length; i++) {
-          background.push(c.background);
-          border.push(c.border);
-          c = getNext(gen, customize, {chart, datasetIndex: dataset.index, dataIndex: i});
-        }
-        setColors(dataset, background, border);
-      }
-    }
+    return defaultMode(chart, gen, customize, mode);
   }
 };
-
-function labelMode(chart, gen, customize) {
-  const colors = {};
-  for (const dataset of chart.data.datasets) {
-    const label = dataset.label ?? '';
-    if (!colors[label]) {
-      colors[label] = getNext(gen, customize, {chart, datasetIndex: 0, dataIndex: undefined, label});
-    }
-    const c = colors[label];
-    setColors(dataset, c.background, c.border);
-  }
-}
 
 export {autocolorPlugin as default};
