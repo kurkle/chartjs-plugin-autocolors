@@ -53,7 +53,7 @@
   "devDependencies": {
     "@kurkle/color": "^0.3.1",
     "@rollup/plugin-json": "^6.0.0",
-    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-node-resolve": "^16.0.0",
     "@rollup/plugin-terser": "^0.4.0",
     "@typescript-eslint/eslint-plugin": "^5.46.0",
     "chartjs-test-utils": "^0.5.0",
