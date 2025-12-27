@@ -51,14 +51,14 @@
   },
   "homepage": "https://github.com/kurkle/chartjs-plugin-autocolors#readme",
   "devDependencies": {
-    "@kurkle/color": "^0.3.1",
+    "@kurkle/color": "^0.4.0",
     "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-node-resolve": "^16.0.0",
     "@rollup/plugin-terser": "^0.4.0",
     "@typescript-eslint/eslint-plugin": "^5.46.0",
     "chartjs-test-utils": "^0.5.0",
     "concurrently": "^9.0.0",
-    "cross-env": "^7.0.3",
+    "cross-env": "^10.1.0",
     "eslint": "^8.29.0",
     "eslint-config-chartjs": "^0.3.0",
     "eslint-plugin-es": "^4.1.0",
@@ -77,7 +77,7 @@
     "typescript": "^5.6.2"
   },
   "peerDependencies": {
-    "@kurkle/color": "^0.3.1",
+    "@kurkle/color": "^0.4.0",
     "chart.js": ">=2"
   }
 }
