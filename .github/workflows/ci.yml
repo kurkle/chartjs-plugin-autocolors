@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
     - uses: actions/setup-node@v6
       with:
         cache: npm
@@ -36,7 +36,7 @@ jobs:
     if: ${{ github.event.pull_request.head.repo.fork != true && github.actor != 'dependabot[bot]' }}
 
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
       with:
         fetch-depth: 0
 
