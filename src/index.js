@@ -1,110 +1,124 @@
-import {hsv2rgb, rgbString} from '@kurkle/color';
+import { hsv2rgb, rgbString } from '@kurkle/color'
 
 function* hueGen() {
-  yield 0;
+  yield 0
   while (true) {
     for (let i = 1; i < 10; i++) {
-      const d = 1 << i;
+      const d = 1 << i
       for (let j = 1; j <= d; j += 2) {
-        yield j / d;
+        yield j / d
       }
     }
   }
 }
 
 function* colorGen(repeat = 1) {
-  const hue = hueGen();
-  let h = hue.next();
+  const hue = hueGen()
+  let h = hue.next()
   while (!h.done) {
-    let rgb = hsv2rgb(Math.round(h.value * 360), 0.6, 0.8);
+    let rgb = hsv2rgb(Math.round(h.value * 360), 0.6, 0.8)
     for (let i = 0; i < repeat; i++) {
-      yield {background: rgbString({r: rgb[0], g: rgb[1], b: rgb[2], a: 192}), border: rgbString({r: rgb[0], g: rgb[1], b: rgb[2], a: 144})};
+      yield {
+        background: rgbString({ a: 192, b: rgb[2], g: rgb[1], r: rgb[0] }),
+        border: rgbString({ a: 144, b: rgb[2], g: rgb[1], r: rgb[0] }),
+      }
     }
-    rgb = hsv2rgb(Math.round(h.value * 360), 0.6, 0.5);
+    rgb = hsv2rgb(Math.round(h.value * 360), 0.6, 0.5)
     for (let i = 0; i < repeat; i++) {
-      yield {background: rgbString({r: rgb[0], g: rgb[1], b: rgb[2], a: 192}), border: rgbString({r: rgb[0], g: rgb[1], b: rgb[2], a: 144})};
+      yield {
+        background: rgbString({ a: 192, b: rgb[2], g: rgb[1], r: rgb[0] }),
+        border: rgbString({ a: 144, b: rgb[2], g: rgb[1], r: rgb[0] }),
+      }
     }
-    h = hue.next();
+    h = hue.next()
   }
 }
 
 function setColors(dataset, background, border, mode) {
   if (mode === 'data') {
-    dataset.backgroundColor = background;
-    dataset.border = border;
+    dataset.backgroundColor = background
+    dataset.border = border
   } else {
-    dataset.backgroundColor = dataset.backgroundColor || background;
-    dataset.borderColor = dataset.borderColor || border;
+    dataset.backgroundColor = dataset.backgroundColor || background
+    dataset.borderColor = dataset.borderColor || border
   }
-  return dataset.backgroundColor === background && dataset.borderColor === border;
+  return dataset.backgroundColor === background && dataset.borderColor === border
 }
 
 function getNext(color, customize, context) {
-  const c = color.next().value;
+  const c = color.next().value
   if (typeof customize === 'function') {
-    return customize(Object.assign({colors: c}, context));
+    return customize(Object.assign({ colors: c }, context))
   }
-  return c;
+  return c
 }
 
 function defaultMode(chart, gen, customize, mode) {
-  const datasetMode = mode === 'dataset';
+  const datasetMode = mode === 'dataset'
 
-  let c = getNext(gen, customize, {chart, datasetIndex: 0, dataIndex: datasetMode ? undefined : 0});
+  let c = getNext(gen, customize, {
+    chart,
+    dataIndex: datasetMode ? undefined : 0,
+    datasetIndex: 0,
+  })
   for (const dataset of chart.data.datasets) {
     if (datasetMode) {
       if (setColors(dataset, c.background, c.border, mode)) {
-        c = getNext(gen, customize, {chart, datasetIndex: dataset.index});
+        c = getNext(gen, customize, { chart, datasetIndex: dataset.index })
       }
     } else {
-      const background = [];
-      const border = [];
+      const background = []
+      const border = []
       for (let i = 0; i < dataset.data.length; i++) {
-        background.push(c.background);
-        border.push(c.border);
-        c = getNext(gen, customize, {chart, datasetIndex: dataset.index, dataIndex: i});
+        background.push(c.background)
+        border.push(c.border)
+        c = getNext(gen, customize, { chart, dataIndex: i, datasetIndex: dataset.index })
       }
-      setColors(dataset, background, border, mode);
+      setColors(dataset, background, border, mode)
     }
   }
-
 }
 
 function labelMode(chart, gen, customize, mode) {
-  const colors = {};
+  const colors = {}
   for (const dataset of chart.data.datasets) {
-    const label = dataset.label ?? '';
+    const label = dataset.label ?? ''
     if (!colors[label]) {
-      colors[label] = getNext(gen, customize, {chart, datasetIndex: 0, dataIndex: undefined, label});
+      colors[label] = getNext(gen, customize, {
+        chart,
+        dataIndex: undefined,
+        datasetIndex: 0,
+        label,
+      })
     }
-    const c = colors[label];
-    setColors(dataset, c.background, c.border, mode);
+    const c = colors[label]
+    setColors(dataset, c.background, c.border, mode)
   }
 }
 
 const autocolorPlugin = {
-  id: 'autocolors',
   beforeUpdate(chart, args, options) {
-    const {mode = 'dataset', enabled = true, customize, repeat} = options;
+    const { mode = 'dataset', enabled = true, customize, repeat } = options
 
     if (!enabled) {
-      return;
+      return
     }
 
-    const gen = colorGen(repeat);
+    const gen = colorGen(repeat)
 
     if (options.offset) {
       // offset the color generation by n colors
       for (let i = 0; i < options.offset; i++) {
-        gen.next();
+        gen.next()
       }
     }
 
     if (mode === 'label') {
-      return labelMode(chart, gen, customize, mode);
+      return labelMode(chart, gen, customize, mode)
     }
-    return defaultMode(chart, gen, customize, mode);
+    return defaultMode(chart, gen, customize, mode)
   },
-};
+  id: 'autocolors',
+}
 
-export {autocolorPlugin as default};
+export { autocolorPlugin as default }
