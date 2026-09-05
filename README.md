@@ -2,7 +2,12 @@
 
 *Automatic color generation for [Chart.js](https://www.chartjs.org)*
 
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/kurkle/chartjs-plugin-autocolors/ci.yml)
+[![npm](https://img.shields.io/npm/v/chartjs-plugin-autocolors.svg)](https://www.npmjs.com/package/chartjs-plugin-autocolors)
+[![release](https://img.shields.io/github/release/kurkle/chartjs-plugin-autocolors.svg?style=flat-square)](https://github.com/kurkle/chartjs-plugin-autocolors/releases/latest)
+![npm bundle size](https://img.shields.io/bundlephobia/min/chartjs-plugin-autocolors.svg)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=kurkle_chartjs-plugin-autocolors&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=kurkle_chartjs-plugin-autocolors)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=kurkle_chartjs-plugin-autocolors&metric=coverage)](https://sonarcloud.io/summary/new_code?id=kurkle_chartjs-plugin-autocolors)
+![GitHub](https://img.shields.io/github/license/kurkle/chartjs-plugin-autocolors.svg)
 
 The generation is based on Janus Troelsen's answer at [Stack Overflow](https://stackoverflow.com/a/13781114/10359775).
 
