@@ -1,69 +1,21 @@
 {
-  "name": "chartjs-plugin-autocolors",
-  "version": "0.3.1",
-  "description": "Automatic color generation for Chart.js",
-  "type": "module",
-  "main": "dist/chartjs-plugin-autocolors.cjs",
-  "module": "dist/chartjs-plugin-autocolors.esm.js",
-  "types": "types/index.esm.d.ts",
-  "jsdelivr": "dist/chartjs-plugin-autocolors.min.js",
-  "unpkg": "dist/chartjs-plugin-autocolors.min.js",
-  "exports": {
-    "types": "./types/index.esm.d.ts",
-    "import": "./dist/chartjs-plugin-autocolors.esm.js",
-    "require": "./dist/chartjs-plugin-autocolors.cjs",
-    "script": "./dist/chartjs-plugin-autocolors.min.js"
-  },
-  "sideEffects": false,
-  "scripts": {
-    "autobuild": "rollup -c -w",
-    "build": "rollup -c",
-    "dev": "karma start ./karma.conf.cjs --no-single-run --auto-watch --browsers chrome",
-    "lint": "concurrently -r \"npm:lint-*\"",
-    "lint-js": "eslint \"src/**/*.js\"",
-    "lint-md": "eslint \"**/*.md\"",
-    "lint-types": "eslint \"types/**/*.ts\" && tsc -p types/tests/",
-    "lint-html": "eslint \"samples/**/*.html\"",
-    "test": "cross-env NODE_ENV=test concurrently \"npm:test-*\"",
-    "test-lint": "npm run lint",
-    "test-karma": "karma start ./karma.conf.cjs --no-auto-watch --single-run"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kurkle/chartjs-plugin-autocolors.git"
-  },
-  "files": [
-    "dist/*",
-    "types/index.esm.d.ts"
-  ],
-  "keywords": [
-    "chart.js",
-    "plugin",
-    "color",
-    "palette",
-    "generator",
-    "auto"
-  ],
   "author": "Jukka Kurkela <jukka.kurkela@gmail.com>",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/kurkle/chartjs-plugin-autocolors/issues"
   },
-  "homepage": "https://github.com/kurkle/chartjs-plugin-autocolors#readme",
+  "description": "Automatic color generation for Chart.js",
   "devDependencies": {
+    "@biomejs/biome": "^2.5.12",
     "@kurkle/color": "^0.4.0",
+    "@kurkle/configs": "^1.0.1",
     "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-node-resolve": "^16.0.0",
     "@rollup/plugin-terser": "^1.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.46.0",
+    "chart.js": "^4.4.5",
     "chartjs-test-utils": "^0.5.0",
     "concurrently": "^9.0.0",
     "cross-env": "^10.1.0",
-    "eslint": "^8.29.0",
-    "eslint-config-chartjs": "^0.3.0",
-    "eslint-plugin-es": "^4.1.0",
-    "eslint-plugin-html": "^8.1.2",
-    "eslint-plugin-markdown": "^3.0.0",
+    "jasmine-core": "^6.3.0",
     "karma": "^6.4.1",
     "karma-chrome-launcher": "^3.1.1",
     "karma-coverage": "^2.2.0",
@@ -76,8 +28,52 @@
     "rollup-plugin-istanbul": "^5.0.0",
     "typescript": "^5.6.2"
   },
+  "exports": {
+    "import": "./dist/chartjs-plugin-autocolors.esm.js",
+    "require": "./dist/chartjs-plugin-autocolors.cjs",
+    "script": "./dist/chartjs-plugin-autocolors.min.js",
+    "types": "./types/index.esm.d.ts"
+  },
+  "files": [
+    "dist/*",
+    "types/index.esm.d.ts"
+  ],
+  "homepage": "https://github.com/kurkle/chartjs-plugin-autocolors#readme",
+  "jsdelivr": "dist/chartjs-plugin-autocolors.min.js",
+  "keywords": [
+    "chart.js",
+    "plugin",
+    "color",
+    "palette",
+    "generator",
+    "auto"
+  ],
+  "license": "MIT",
+  "main": "dist/chartjs-plugin-autocolors.cjs",
+  "module": "dist/chartjs-plugin-autocolors.esm.js",
+  "name": "chartjs-plugin-autocolors",
   "peerDependencies": {
     "@kurkle/color": "^0.4.0",
     "chart.js": ">=2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kurkle/chartjs-plugin-autocolors.git"
+  },
+  "scripts": {
+    "autobuild": "rollup -c -w",
+    "build": "rollup -c",
+    "dev": "karma start ./karma.conf.cjs --no-single-run --auto-watch --browsers chrome",
+    "format": "biome check --write",
+    "lint": "biome check",
+    "prepare": "git config core.hooksPath .githooks || true",
+    "test": "cross-env NODE_ENV=test concurrently \"npm:test-*\"",
+    "test-karma": "karma start ./karma.conf.cjs --no-auto-watch --single-run",
+    "typecheck": "tsc -p types/tests/"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "types": "types/index.esm.d.ts",
+  "unpkg": "dist/chartjs-plugin-autocolors.min.js",
+  "version": "0.3.1"
 }

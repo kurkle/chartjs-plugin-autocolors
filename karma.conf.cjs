@@ -1,35 +1,25 @@
-const istanbul = require('rollup-plugin-istanbul');
-const resolve = require('@rollup/plugin-node-resolve').nodeResolve;
-const json = require('@rollup/plugin-json');
-const env = process.env.NODE_ENV;
+const istanbul = require('rollup-plugin-istanbul')
+const resolve = require('@rollup/plugin-node-resolve').nodeResolve
+const json = require('@rollup/plugin-json')
+const env = process.env.NODE_ENV
 
-module.exports = async function(karma) {
-  const builds = (await import('./rollup.config.js')).default;
-  const regex = karma.autoWatch ? /chartjs-plugin-autocolors\.cjs$/ : /chartjs-plugin-autocolors\.min\.js$/;
-  const build = builds.filter(v => v.output.file && v.output.file.match(regex))[0];
+module.exports = async (karma) => {
+  const builds = (await import('./rollup.config.js')).default
+  const regex = karma.autoWatch
+    ? /chartjs-plugin-autocolors\.cjs$/
+    : /chartjs-plugin-autocolors\.min\.js$/
+  const build = builds.filter((v) => v.output.file && v.output.file.match(regex))[0]
 
   if (env === 'test') {
     build.plugins = [
       resolve(),
       json(),
-      istanbul({exclude: ['node_modules/**/*.js', 'package.json']})
-    ];
+      istanbul({ exclude: ['node_modules/**/*.js', 'package.json'] }),
+    ]
   }
 
   karma.set({
     browsers: ['chrome', 'firefox'],
-    frameworks: ['jasmine'],
-    reporters: ['spec', 'kjhtml'],
-    logLevel: karma.LOG_WARN,
-
-    files: [
-      {pattern: './test/fixtures/**/*.js', included: false},
-      {pattern: './test/fixtures/**/*.png', included: false},
-      'node_modules/chart.js/dist/chart.umd.js',
-      'src/index.js',
-      'test/index.js',
-      'test/specs/**/*.js'
-    ],
 
     customLaunchers: {
       chrome: {
@@ -37,31 +27,15 @@ module.exports = async function(karma) {
         flags: [
           '--disable-background-timer-throttling',
           '--disable-backgrounding-occluded-windows',
-          '--disable-renderer-backgrounding'
-        ]
+          '--disable-renderer-backgrounding',
+        ],
       },
       firefox: {
         base: 'Firefox',
         prefs: {
-          'layers.acceleration.disabled': true
-        }
-      }
-    },
-
-    preprocessors: {
-      'test/index.js': ['rollup'],
-      'src/index.js': ['sources']
-    },
-
-    rollupPreprocessor: {
-      plugins: [
-        resolve()
-      ],
-      output: {
-        name: 'test',
-        format: 'umd',
-        sourcemap: karma.autoWatch ? 'inline' : false
-      }
+          'layers.acceleration.disabled': true,
+        },
+      },
     },
 
     customPreprocessors: {
@@ -70,25 +44,51 @@ module.exports = async function(karma) {
         options: {
           output: {
             format: 'iife',
-            name: 'fixture'
-          }
-        }
+            name: 'fixture',
+          },
+        },
       },
       sources: {
         base: 'rollup',
-        options: build
-      }
-    }
-  });
+        options: build,
+      },
+    },
+
+    files: [
+      { included: false, pattern: './test/fixtures/**/*.js' },
+      { included: false, pattern: './test/fixtures/**/*.png' },
+      'node_modules/chart.js/dist/chart.umd.js',
+      'src/index.js',
+      'test/index.js',
+      'test/specs/**/*.js',
+    ],
+    frameworks: ['jasmine'],
+    logLevel: karma.LOG_WARN,
+
+    preprocessors: {
+      'src/index.js': ['sources'],
+      'test/index.js': ['rollup'],
+    },
+    reporters: ['spec', 'kjhtml'],
+
+    rollupPreprocessor: {
+      output: {
+        format: 'umd',
+        name: 'test',
+        sourcemap: karma.autoWatch ? 'inline' : false,
+      },
+      plugins: [resolve()],
+    },
+  })
 
   if (env === 'test') {
-    karma.reporters.push('coverage');
+    karma.reporters.push('coverage')
     karma.coverageReporter = {
       dir: 'coverage/',
       reporters: [
-        {type: 'html', subdir: 'html'},
-        {type: 'lcovonly', subdir: (browser) => browser.toLowerCase().split(/[ /-]/)[0]}
-      ]
-    };
+        { subdir: 'html', type: 'html' },
+        { subdir: (browser) => browser.toLowerCase().split(/[ /-]/)[0], type: 'lcovonly' },
+      ],
+    }
   }
-};
+}

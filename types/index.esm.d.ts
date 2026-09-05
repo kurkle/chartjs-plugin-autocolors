@@ -1,4 +1,4 @@
-import { Chart, ChartType } from 'chart.js';
+import { Chart, ChartType } from 'chart.js'
 
 declare module 'chart.js' {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -13,10 +13,10 @@ export interface ColorsDescriptor {
 }
 
 export interface AutocolorsOptions {
-  enabled?: boolean,
-  mode?: 'dataset' | 'data' | 'label',
-  offset?: number,
-  repeat?: number,
+  enabled?: boolean
+  mode?: 'dataset' | 'data' | 'label'
+  offset?: number
+  repeat?: number
   customize?: (ctx: AutocolorsContext, options: AutocolorsOptions) => ColorsDescriptor
 }
 
@@ -31,4 +31,4 @@ export interface AutocolorsContext {
  * Exports the plugin class as default
  */
 // eslint-disable-next-line @typescript-eslint/no-use-before-define
-export { autocolorPlugin as default };
+export { autocolorPlugin as default }

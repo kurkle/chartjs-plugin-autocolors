@@ -1,0 +1,16 @@
+{
+  "extends": ["./node_modules/@kurkle/configs/biome.json"],
+  "files": {
+    "includes": [
+      "biome.json",
+      "karma.conf.cjs",
+      "package.json",
+      "rollup.config.js",
+      "src/**/*.js",
+      "test/index.js",
+      "test/specs/**/*.js",
+      "types/**/*.ts",
+      "types/**/*.json"
+    ]
+  }
+}

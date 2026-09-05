@@ -1,17 +1,19 @@
-import resolve from '@rollup/plugin-node-resolve';
-import terser from '@rollup/plugin-terser';
-import {readFileSync} from 'fs';
+import resolve from '@rollup/plugin-node-resolve'
+import terser from '@rollup/plugin-terser'
+import { readFileSync } from 'fs'
 
-const {author, name, version, homepage, main, module, jsdelivr, license} = JSON.parse(readFileSync('./package.json'));
+const { author, name, version, homepage, main, module, jsdelivr, license } = JSON.parse(
+  readFileSync('./package.json')
+)
 
 const banner = `/*!
  * ${name} v${version}
  * ${homepage}
- * (c) ${(new Date(process.env.SOURCE_DATE_EPOCH ? (process.env.SOURCE_DATE_EPOCH * 1000) : new Date().getTime())).getFullYear()} ${author}
+ * (c) ${(new Date(process.env.SOURCE_DATE_EPOCH ? process.env.SOURCE_DATE_EPOCH * 1000 : new Date().getTime())).getFullYear()} ${author}
  * Released under the ${license} license
- */`;
+ */`
 
-const input = 'src/index.js';
+const input = 'src/index.js'
 
 const commonOutputOptions = {
   banner,
@@ -19,48 +21,44 @@ const commonOutputOptions = {
   indent: false,
   name,
   sourcemap: true,
-};
+}
 
 export default [
   // ESM
   {
+    external: (_) => /node_modules/.test(_),
     input,
-    plugins: [
-      resolve()
-    ],
-    external: _ => (/node_modules/).test(_),
     output: {
       ...commonOutputOptions,
       file: module,
       format: 'esm',
-    }
+    },
+    plugins: [resolve()],
   },
   // UMD
   {
     input,
-    plugins: [
-      resolve()
-    ],
     output: {
       ...commonOutputOptions,
       file: main,
-    }
+    },
+    plugins: [resolve()],
   },
   // UMD minified
   {
     input,
+    output: {
+      ...commonOutputOptions,
+      banner: undefined,
+      file: jsdelivr,
+    },
     plugins: [
       resolve(),
       terser({
         output: {
-          preamble: banner
-        }
-      })
+          preamble: banner,
+        },
+      }),
     ],
-    output: {
-      ...commonOutputOptions,
-      file: jsdelivr,
-      banner: undefined,
-    }
   },
-];
+]
