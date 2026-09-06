@@ -4,13 +4,15 @@ description: Color multiple adjacent datasets with the same color.
 ---
 
 Use `repeat` when several adjacent datasets should share the same color before autocolors moves on to the
-next one. Use the buttons below to switch the repeat count on the live chart.
+next one. The three charts below use the same 12 datasets, only `repeat` changes — 1, then 2, then 3 — so
+the palette repeating at a different pace is visible side by side, with the legend showing which bars share
+a color.
 
-```js chart-editor
+```js chart-editor title="Repeat: 1"
 // <block:data:1>
 const labels = ['Color']
 const datasets = []
-for (let i = 1; i <= 24; i++) {
+for (let i = 1; i <= 12; i++) {
   datasets.push({
     label: `Bar ${i}`,
     data: [Utils.rand()],
@@ -37,7 +39,6 @@ const config = {
       autocolors: {
         repeat: 1,
       },
-      legend: false,
       title: {
         display: true,
         text: 'repeat: 1',
@@ -47,20 +48,97 @@ const config = {
 }
 // </block:config>
 
-function setRepeat(chart, repeat) {
-  chart.options.plugins.autocolors.repeat = repeat
-  chart.options.plugins.title.text = `repeat: ${repeat}`
-  chart.update()
+module.exports = {
+  config,
 }
+```
 
-const actions = [
-  { name: 'Repeat: 1', handler: (chart) => setRepeat(chart, 1) },
-  { name: 'Repeat: 2', handler: (chart) => setRepeat(chart, 2) },
-  { name: 'Repeat: 3', handler: (chart) => setRepeat(chart, 3) },
-]
+```js chart-editor title="Repeat: 2"
+// <block:data:1>
+const labels = ['Color']
+const datasets = []
+for (let i = 1; i <= 12; i++) {
+  datasets.push({
+    label: `Bar ${i}`,
+    data: [Utils.rand()],
+  })
+}
+const data = { labels, datasets }
+// </block:data>
+
+// <block:config:0>
+const config = {
+  type: 'bar',
+  data,
+  options: {
+    elements: {
+      bar: {
+        borderWidth: 2,
+      },
+    },
+    hover: {
+      mode: 'nearest',
+      intersect: true,
+    },
+    plugins: {
+      autocolors: {
+        repeat: 2,
+      },
+      title: {
+        display: true,
+        text: 'repeat: 2',
+      },
+    },
+  },
+}
+// </block:config>
 
 module.exports = {
-  actions,
+  config,
+}
+```
+
+```js chart-editor title="Repeat: 3"
+// <block:data:1>
+const labels = ['Color']
+const datasets = []
+for (let i = 1; i <= 12; i++) {
+  datasets.push({
+    label: `Bar ${i}`,
+    data: [Utils.rand()],
+  })
+}
+const data = { labels, datasets }
+// </block:data>
+
+// <block:config:0>
+const config = {
+  type: 'bar',
+  data,
+  options: {
+    elements: {
+      bar: {
+        borderWidth: 2,
+      },
+    },
+    hover: {
+      mode: 'nearest',
+      intersect: true,
+    },
+    plugins: {
+      autocolors: {
+        repeat: 3,
+      },
+      title: {
+        display: true,
+        text: 'repeat: 3',
+      },
+    },
+  },
+}
+// </block:config>
+
+module.exports = {
   config,
 }
 ```

@@ -3,21 +3,27 @@ title: Update
 description: autocolors reacts to data added after the chart is created.
 ---
 
-`'data'` mode assigns a color per data point, which is the recommended mode for Pie / Doughnut charts. Colors
-are (re-)generated on every update, so newly pushed data points get colored too.
+`'data'` mode assigns a color per data point, which is the recommended mode for Pie / Doughnut charts. The
+chart below starts with 5 slices, each already colored. Click **Add data** to push two more slices — the
+new slices get their own colors, while the original 5 keep exactly the colors they already had.
 
 ```js chart-editor
+// <block:data:1>
+const data = {
+  labels: ['A', 'B', 'C', 'D', 'E'],
+  datasets: [
+    {
+      label: 'Pie 1',
+      data: [3, 5, 2, 4, 6],
+    },
+  ],
+}
+// </block:data>
+
 // <block:config:0>
 const config = {
   type: 'pie',
-  data: {
-    datasets: [
-      {
-        label: 'Pie 1',
-        data: [],
-      },
-    ],
-  },
+  data,
   options: {
     plugins: {
       autocolors: {
@@ -31,9 +37,10 @@ const config = {
 
 const actions = [
   {
-    name: 'Update',
+    name: 'Add data',
     handler(chart) {
-      chart.data.datasets[0].data.push(1, 2, 3)
+      chart.data.labels.push('F', 'G')
+      chart.data.datasets[0].data.push(4, 7)
       chart.update()
     },
   },
