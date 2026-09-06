@@ -1,0 +1,13 @@
+<svg aria-labelledby="logo-title" enable-background="new 0 0 192 192" height="192px" role="img" version="1.1" viewBox="0 0 192 192" width="192px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title id="logo-title">Chart.js Autocolors logo</title><defs>
+	<clipPath id="inner">
+		<path d="M96,159.3l-57.2-33V65.7L96,32.7l57.2,33v60.6L96,159.3z"></path>
+	</clipPath>
+</defs><g clip-path="url(#inner)">
+	<rect fill="#36A2EB" x="38.80" y="32.7" width="19.07" height="126.6"></rect>
+	<rect fill="#FF6384" x="57.87" y="32.7" width="19.07" height="126.6"></rect>
+	<rect fill="#FFCE56" x="76.93" y="32.7" width="19.07" height="126.6"></rect>
+	<rect fill="#4BC0C0" x="96.00" y="32.7" width="19.07" height="126.6"></rect>
+	<rect fill="#9966FF" x="115.07" y="32.7" width="19.07" height="126.6"></rect>
+	<rect fill="#FF9F40" x="134.13" y="32.7" width="19.07" height="126.6"></rect>
+</g><path d="M96,176l-69.292-39.999V56L96,16l69.292,40v80L96,176z M34.849,131.301L96,166.602l61.151-35.301V60.7
+	L96,25.399L34.849,60.7V131.301z" fill="#E7E9ED"></path></svg>

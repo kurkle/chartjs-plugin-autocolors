@@ -1,0 +1,28 @@
+---
+title: Getting Started
+description: Install chartjs-plugin-autocolors and automatically color Chart.js datasets.
+---
+
+`chartjs-plugin-autocolors` is a Chart.js plugin that automatically generates colors for datasets, based on
+Janus Troelsen's answer at [Stack Overflow](https://stackoverflow.com/a/13781114/10359775).
+
+This plugin requires Chart.js 3.0.0 or later. Could work with v2, but it is not supported.
+
+**NOTE:** the plugin does not automatically register.
+
+## Installation
+
+```bash
+npm install chart.js chartjs-plugin-autocolors
+```
+
+## Basic Usage
+
+```js
+import { Chart } from 'chart.js'
+import autocolors from 'chartjs-plugin-autocolors'
+
+Chart.register(autocolors)
+```
+
+Continue with the editable [basic sample](/samples/bar/).
