@@ -5,11 +5,10 @@
     "alwaysStrict": true,
 
     /* Modules */
-    "baseUrl": ".",
     "checkJs": true,
     "lib": ["es2018", "DOM"],
     "module": "ES6",
-    "moduleResolution": "Node",
+    "moduleResolution": "Bundler",
 
     /* Emit */
     "noEmit": true,
