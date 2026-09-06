@@ -10,7 +10,7 @@
     "@astrojs/starlight": "^0.42.0",
     "@biomejs/biome": "^2.5.12",
     "@kurkle/astro-chartjs-editor": "^1.0.0",
-    "@kurkle/color": "^0.4.0",
+    "@kurkle/color": "^0.5.1",
     "@kurkle/configs": "^1.5.1",
     "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-node-resolve": "^16.0.0",
@@ -29,7 +29,7 @@
     "karma-jasmine": "^5.1.0",
     "karma-jasmine-html-reporter": "^2.0.0",
     "karma-rollup-preprocessor": "7.0.8",
-    "karma-spec-reporter": "^0.0.36",
+    "karma-spec-reporter": "^0.0.37",
     "png-to-ico": "^3.0.2",
     "rollup": "^4.21.2",
     "rollup-plugin-istanbul": "^5.0.0",
@@ -63,7 +63,7 @@
   "module": "dist/chartjs-plugin-autocolors.esm.js",
   "name": "chartjs-plugin-autocolors",
   "peerDependencies": {
-    "@kurkle/color": "^0.4.0",
+    "@kurkle/color": "^0.4.0 || ^0.5.0",
     "chart.js": ">=2"
   },
   "repository": {
