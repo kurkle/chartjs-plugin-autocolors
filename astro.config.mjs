@@ -75,7 +75,7 @@ export default defineConfig({
             },
             {
               label: 'chartjs-plugin-gradient',
-              link: 'https://github.com/kurkle/chartjs-plugin-gradient',
+              link: 'https://chartjs-plugin-gradient.pages.dev/',
             },
           ],
           label: 'Ecosystem',
