@@ -1,7 +1,8 @@
 import colorLib from '@kurkle/color'
 import { Chart } from 'chart.js'
 
-const lighten = (color: string, value: number) => colorLib(color).lighten(value).rgbString()
+const lighten = (color: string, value: number) =>
+  colorLib(color).lighten(value).rgbString() ?? color
 
 const _chart = new Chart('test', {
   data: {
