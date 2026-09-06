@@ -1,0 +1,62 @@
+---
+title: Integration
+description: Load, register, and disable chartjs-plugin-autocolors from ESM or a CDN.
+---
+
+## ESM
+
+```js
+import { Chart } from 'chart.js'
+import autocolors from 'chartjs-plugin-autocolors'
+```
+
+## CDN
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-autocolors"></script>
+```
+
+When loaded from a CDN, the plugin is exposed as a global instead of a module export.
+
+```js
+const autocolors = window['chartjs-plugin-autocolors']
+```
+
+## Registering
+
+Register the plugin for every chart on the page:
+
+```js
+Chart.register(autocolors)
+```
+
+Or register it for a single chart only:
+
+```js
+const chart = new Chart(ctx, {
+  // ...
+  plugins: [autocolors],
+})
+```
+
+## Disabling
+
+If registered globally, it might be desirable to disable autocolors for some charts:
+
+```js
+const chart = new Chart(ctx, {
+  // ...
+  options: {
+    plugins: {
+      autocolors: {
+        enabled: false,
+      },
+    },
+  },
+})
+```
+
+## Browser compatibility
+
+The plugin uses a generator function, so it is not compatible with Internet Explorer.

@@ -1,0 +1,98 @@
+---
+title: Usage
+description: Modes, customization, offset, and repeat options for chartjs-plugin-autocolors.
+---
+
+## Mode
+
+There are three modes: `'dataset'` (default), `'data'`, and `'label'`.
+
+- In `'dataset'` mode, a new color is picked for each dataset.
+- In `'data'` mode, an array of colors, equivalent to the length of `data`, is provided for each dataset.
+- In `'label'` mode, a color is picked for each distinct dataset label.
+
+**NOTE:** `'dataset'` mode does not work properly for **Pie** / **Doughnut** charts, so using `'data'` mode with
+those charts is advised.
+
+```js
+const chart = new Chart(ctx, {
+  // ...
+  options: {
+    plugins: {
+      autocolors: {
+        mode: 'data',
+      },
+    },
+  },
+})
+```
+
+See the editable [update sample](/samples/update/), which uses `'data'` mode on a pie chart.
+
+## Customize
+
+A `customize` function can be provided to customize the generated colors. The function receives a context
+object containing a `colors` property (`{ background, border }`) and is expected to return an object with
+`background` and `border` properties, with values acceptable as colors by Chart.js.
+
+```js
+const lighten = (color, value) => Chart.helpers.color(color).lighten(value).rgbString()
+
+const chart = new Chart(ctx, {
+  // ...
+  options: {
+    plugins: {
+      autocolors: {
+        customize(context) {
+          const colors = context.colors
+          return {
+            background: lighten(colors.background, 0.5),
+            border: lighten(colors.border, 0.5),
+          }
+        },
+      },
+    },
+  },
+})
+```
+
+See the editable [customize sample](/samples/customize/).
+
+## Offset
+
+The `offset` option can be used to offset the color generation by a number of colors.
+
+```js
+const chart = new Chart(ctx, {
+  // ...
+  options: {
+    plugins: {
+      autocolors: {
+        offset: 5,
+      },
+    },
+  },
+})
+```
+
+See the editable [offset sample](/samples/offset/).
+
+## Repeat
+
+Sometimes you might need to color multiple adjacent datasets with the same color. The `repeat` option is for
+that use case.
+
+```js
+const chart = new Chart(ctx, {
+  // ...
+  options: {
+    plugins: {
+      autocolors: {
+        repeat: 2,
+      },
+    },
+  },
+})
+```
+
+See the editable [repeat sample](/samples/repeat/).
