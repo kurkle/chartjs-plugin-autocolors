@@ -63,7 +63,7 @@
   "module": "dist/chartjs-plugin-autocolors.esm.js",
   "name": "chartjs-plugin-autocolors",
   "peerDependencies": {
-    "@kurkle/color": "^0.4.0 || ^0.5.0",
+    "@kurkle/color": ">=0.3.0",
     "chart.js": ">=2"
   },
   "repository": {
@@ -82,6 +82,7 @@
     "lint": "biome check",
     "predocs": "npm run docs:version",
     "predocs:dev": "npm run docs:version",
+    "prepack": "npm run build",
     "prepare": "git config core.hooksPath .githooks || true",
     "test": "cross-env NODE_ENV=test concurrently \"npm:test-*\"",
     "test-karma": "karma start ./karma.conf.cjs --no-auto-watch --single-run",
