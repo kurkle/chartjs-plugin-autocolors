@@ -1,3 +1,7 @@
+import { clearCanvas } from 'chart.js/helpers'
+
+import autocolors from '../../../src/index.js'
+
 const width = 512;
 const height = 512;
 
@@ -6,7 +10,7 @@ canvas.width = width;
 canvas.height = height;
 const ctx = canvas.getContext('2d');
 
-module.exports = {
+export default {
   config: {
     type: 'bar',
     data: {
@@ -26,7 +30,7 @@ module.exports = {
         }
       }
     },
-    plugins: [window['chartjs-plugin-autocolors']]
+    plugins: [autocolors]
   },
   options: {
     canvas: {
@@ -45,7 +49,7 @@ module.exports = {
       ctx.drawImage(chart.canvas, 0, snapHeight, snapWidth, snapHeight);
 
       // Modify the chart contents to contain both snapshots
-      Chart.helpers.clearCanvas(chart.canvas);
+      clearCanvas(chart.canvas);
       chart.ctx.drawImage(canvas, 0, 0);
     }
   }

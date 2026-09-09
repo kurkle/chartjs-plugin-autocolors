@@ -1,4 +1,6 @@
-module.exports = {
+import autocolors from '../../../src/index.js'
+
+export default {
   config: {
     type: 'bar',
     data: {
@@ -7,12 +9,13 @@ module.exports = {
     },
     options: {
       borderWidth: 2,
+      categoryPercentage: 1,
+      barPercentage: 1,
       events: [], // disable events for easier image saving
       plugins: {
         legend: false,
         autocolors: {
-          mode: 'data',
-          repeat: 3
+          mode: 'data'
         }
       },
       scales: {
@@ -24,6 +27,6 @@ module.exports = {
         }
       }
     },
-    plugins: [window['chartjs-plugin-autocolors']]
+    plugins: [autocolors]
   }
 };

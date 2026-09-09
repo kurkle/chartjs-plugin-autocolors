@@ -1,4 +1,6 @@
-module.exports = {
+import autocolors from '../../../src/index.js'
+
+export default {
   config: {
     type: 'bar',
     data: {
@@ -23,7 +25,7 @@ module.exports = {
         }
       }
     },
-    plugins: [window['chartjs-plugin-autocolors']]
+    plugins: [autocolors]
   },
   options: {
     spriteText: true

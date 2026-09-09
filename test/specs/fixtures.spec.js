@@ -1,3 +1,5 @@
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000
+import { specsFromFixtures } from '../utils'
 
-describe('auto', jasmine.fixtures(''))
+describe('fixtures', () => {
+  describe('auto', specsFromFixtures('auto'))
+})
