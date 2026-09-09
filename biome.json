@@ -3,14 +3,17 @@
   "files": {
     "includes": [
       "biome.json",
-      "karma.conf.cjs",
       "package.json",
       "rollup.config.js",
+      "scripts/**/*.mjs",
       "src/**/*.js",
-      "test/index.js",
+      "test/setup.js",
       "test/specs/**/*.js",
+      "test/utils/**/*.js",
+      "tsconfig.tooling.json",
       "types/**/*.ts",
-      "types/**/*.json"
+      "types/**/*.json",
+      "vitest.browser.config.ts"
     ]
   }
 }
