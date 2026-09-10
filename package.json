@@ -89,9 +89,9 @@
     "predocs:dev": "npm run docs:version",
     "prepack": "npm run build",
     "prepare": "git config core.hooksPath .githooks || true",
-    "test": "npm run test:fixture && npm run test:package",
+    "test": "npm run test:fixture && npm run test:pack",
     "test:fixture": "vitest run --config vitest.browser.config.ts --coverage",
-    "test:package": "attw --pack . && publint --pack npm",
+    "test:pack": "attw --pack . && publint --pack npm",
     "typecheck": "tsc -p types/tests/ && tsc --noEmit -p tsconfig.tooling.json",
     "typecheck:docs": "astro check"
   },
