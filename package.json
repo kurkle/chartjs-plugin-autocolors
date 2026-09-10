@@ -31,15 +31,24 @@
     "vitest": "^5.0.0"
   },
   "exports": {
-    "import": "./dist/chartjs-plugin-autocolors.esm.js",
-    "require": "./dist/chartjs-plugin-autocolors.cjs",
-    "script": "./dist/chartjs-plugin-autocolors.min.js",
-    "types": "./types/index.esm.d.ts"
+    ".": {
+      "import": {
+        "types": "./types/index.esm.d.ts",
+        "default": "./dist/chartjs-plugin-autocolors.esm.js"
+      },
+      "require": {
+        "types": "./types/index.esm.d.cts",
+        "default": "./dist/chartjs-plugin-autocolors.cjs"
+      },
+      "script": "./dist/chartjs-plugin-autocolors.min.js"
+    },
+    "./package.json": "./package.json"
   },
   "files": [
     "dist/*",
     "!dist/docs/**",
-    "types/index.esm.d.ts"
+    "types/index.esm.d.ts",
+    "types/index.esm.d.cts"
   ],
   "homepage": "https://github.com/kurkle/chartjs-plugin-autocolors#readme",
   "jsdelivr": "dist/chartjs-plugin-autocolors.min.js",
@@ -65,7 +74,7 @@
   },
   "scripts": {
     "autobuild": "rollup -c -w",
-    "build": "rollup -c",
+    "build": "rollup -c && node scripts/build-cjs-types.mjs",
     "dev": "vitest --config vitest.browser.config.ts",
     "docs": "npm run build && astro build",
     "docs:dev": "npm run build && astro dev",
@@ -85,7 +94,7 @@
   },
   "sideEffects": false,
   "type": "module",
-  "types": "types/index.esm.d.ts",
+  "types": "types/index.esm.d.cts",
   "unpkg": "dist/chartjs-plugin-autocolors.min.js",
   "version": "0.0.0-development"
 }

@@ -15,5 +15,17 @@
       "types/**/*.json",
       "vitest.browser.config.ts"
     ]
-  }
+  },
+  "overrides": [
+    {
+      "assist": {
+        "actions": {
+          "source": {
+            "useSortedKeys": "off"
+          }
+        }
+      },
+      "includes": ["package.json"]
+    }
+  ]
 }

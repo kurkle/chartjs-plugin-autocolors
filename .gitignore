@@ -4,3 +4,6 @@ dist/
 coverage
 .astro/
 /docs/node_modules
+
+# Generated from types/index.esm.d.ts by scripts/build-cjs-types.mjs
+types/*.d.cts
