@@ -14,7 +14,12 @@
     "noEmit": true,
 
     /* Completeness */
-    "skipLibCheck": true,
+    // False, not true: skipLibCheck also skips checking the .d.ts files this
+    // package ships, which is exactly what let an undeclared `autocolorPlugin`
+    // name go unnoticed in types/index.esm.d.ts. Keep it off so a broken
+    // hand-written declaration fails typecheck instead of only failing at
+    // runtime for a downstream consumer who has skipLibCheck: false.
+    "skipLibCheck": false,
     /* Type Checking */
     "strict": true,
     "strictBindCallApply": true,
