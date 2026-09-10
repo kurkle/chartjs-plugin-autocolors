@@ -42,7 +42,7 @@ const dir = 'types'
 
 const typeOnlyPackageImports = (source) =>
   source.replace(
-    /import\s+(?:type\s+)?([^;'"]+?)\s+from\s+'([^.'][^']*)'\s*;?/g,
+    /import[ \t]+(?:type[ \t]+)?([^;'"]+?)[ \t]+from[ \t]+'([^.'][^']*)'[ \t]*;?/g,
     (_match, clause, specifier) =>
       `import type ${clause} from '${specifier}' with { 'resolution-mode': 'import' };`
   )
@@ -112,5 +112,8 @@ for (const name of readdirSync(dir).filter((file) => file.endsWith('.d.ts'))) {
     ? `import type {} from './${twin}' with { 'resolution-mode': 'import' };\n`
     : ''
 
-  writeFileSync(join(dir, name.replace(/\.d\.ts$/, '.d.cts')), prefix + source)
+  writeFileSync(
+    join(dir, name.replace(/\.d\.ts$/, '.d.cts')),
+    (prefix + source).replace(/\n{3,}/g, '\n\n')
+  )
 }
