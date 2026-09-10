@@ -1,4 +1,4 @@
-import { Chart, ChartType } from 'chart.js'
+import { Chart, ChartType, Plugin } from 'chart.js'
 
 declare module 'chart.js' {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -27,8 +27,9 @@ export interface AutocolorsContext {
   datasetIndex: number
 }
 
+declare const autocolorPlugin: Plugin
+
 /**
  * Exports the plugin class as default
  */
-// eslint-disable-next-line @typescript-eslint/no-use-before-define
 export { autocolorPlugin as default }
