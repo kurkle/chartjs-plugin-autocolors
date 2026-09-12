@@ -18,39 +18,35 @@ for (let i = 1; i <= 20; i++) {
 const data = { labels, datasets }
 // </block:data>
 
-// <block:options:2>
+// <block:config:0>
 const lighten = (color, value) => helpers.color(color).lighten(value).rgbString()
 
-const options = {
-  elements: {
-    bar: {
-      borderWidth: 2,
-    },
-  },
-  hover: {
-    mode: 'nearest',
-    intersect: true,
-  },
-  plugins: {
-    autocolors: {
-      mode: 'dataset',
-      customize(context) {
-        const colors = context.colors
-        return {
-          background: lighten(colors.background, 0.5),
-          border: lighten(colors.border, 0.5),
-        }
-      },
-    },
-  },
-}
-// </block:options>
-
-// <block:config:0>
 const config = {
   type: 'bar',
   data,
-  options,
+  options: {
+    elements: {
+      bar: {
+        borderWidth: 2,
+      },
+    },
+    hover: {
+      mode: 'nearest',
+      intersect: true,
+    },
+    plugins: {
+      autocolors: {
+        mode: 'dataset',
+        customize(context) {
+          const colors = context.colors
+          return {
+            background: lighten(colors.background, 0.5),
+            border: lighten(colors.border, 0.5),
+          }
+        },
+      },
+    },
+  },
 }
 // </block:config>
 

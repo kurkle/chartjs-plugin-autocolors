@@ -4,63 +4,53 @@ description: Offset the color generation by a number of colors.
 ---
 
 Use `offset` so multiple charts on the same page, each with their own autocolors instance, don't all start
-from the same first color. Use the buttons below to switch the offset on the live chart.
+from the same first color. The three charts below share the exact same data — only their `offset` differs —
+so each one's palette starts one color further along than the last.
 
 ```js chart-editor
 // <block:data:1>
 const labels = ['Color']
-const datasets = []
+const values = []
 for (let i = 1; i <= 24; i++) {
-  datasets.push({
-    label: `Bar ${i}`,
-    data: [Utils.rand()],
-  })
+  values.push(Utils.rand())
 }
-const data = { labels, datasets }
 // </block:data>
 
 // <block:config:0>
-const config = {
-  type: 'bar',
-  data,
-  options: {
-    elements: {
-      bar: {
-        borderWidth: 2,
+function makeConfig(offset) {
+  const datasets = values.map((value, i) => ({
+    label: `Bar ${i + 1}`,
+    data: [value],
+  }))
+  return {
+    type: 'bar',
+    data: { labels, datasets },
+    options: {
+      elements: {
+        bar: {
+          borderWidth: 2,
+        },
+      },
+      hover: {
+        mode: 'nearest',
+        intersect: true,
+      },
+      plugins: {
+        autocolors: {
+          offset,
+        },
+        legend: false,
       },
     },
-    hover: {
-      mode: 'nearest',
-      intersect: true,
-    },
-    plugins: {
-      autocolors: {
-        offset: 0,
-      },
-      legend: false,
-      title: {
-        display: true,
-        text: 'offset: 0',
-      },
-    },
-  },
+  }
 }
 // </block:config>
 
-function setOffset(chart, offset) {
-  chart.options.plugins.autocolors.offset = offset
-  chart.options.plugins.title.text = `offset: ${offset}`
-  chart.update()
-}
-
-const actions = [
-  { name: 'Offset: 0', handler: (chart) => setOffset(chart, 0) },
-  { name: 'Offset: 1', handler: (chart) => setOffset(chart, 1) },
-  { name: 'Offset: 2', handler: (chart) => setOffset(chart, 2) },
-]
-
 module.exports = {
-  actions,
-  config,
+  charts: [
+    { title: 'offset: 0', config: makeConfig(0) },
+    { title: 'offset: 1', config: makeConfig(1) },
+    { title: 'offset: 2', config: makeConfig(2) },
+  ],
 }
 ```
