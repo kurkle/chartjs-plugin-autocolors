@@ -4,7 +4,7 @@ description: Offset the color generation by a number of colors.
 ---
 
 Use `offset` so multiple charts on the same page, each with their own autocolors instance, don't all start
-from the same first color. Use the buttons below to switch the offset on the live chart.
+from the same first color. Try the control below to switch the offset on the live chart.
 
 ```js chart-editor
 // <block:data:1>
@@ -38,29 +38,13 @@ const config = {
         offset: 0,
       },
       legend: false,
-      title: {
-        display: true,
-        text: 'offset: 0',
-      },
     },
   },
 }
 // </block:config>
 
-function setOffset(chart, offset) {
-  chart.options.plugins.autocolors.offset = offset
-  chart.options.plugins.title.text = `offset: ${offset}`
-  chart.update()
-}
-
-const actions = [
-  { name: 'Offset: 0', handler: (chart) => setOffset(chart, 0) },
-  { name: 'Offset: 1', handler: (chart) => setOffset(chart, 1) },
-  { name: 'Offset: 2', handler: (chart) => setOffset(chart, 2) },
-]
-
 module.exports = {
-  actions,
   config,
+  choices: [{ path: 'options.plugins.autocolors.offset', values: [0, 1, 2], control: 'radio' }],
 }
 ```
