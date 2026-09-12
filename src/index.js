@@ -37,7 +37,7 @@ function* colorGen(repeat = 1) {
 function setColors(dataset, background, border, mode) {
   if (mode === 'data') {
     dataset.backgroundColor = background
-    dataset.border = border
+    dataset.borderColor = border
   } else {
     dataset.backgroundColor = dataset.backgroundColor || background
     dataset.borderColor = dataset.borderColor || border
