@@ -32,9 +32,9 @@ Or via CDN:
 
 ```js
 import { Chart, registerables } from 'chart.js';
-import autocolors from 'chartjs-plugin-autocolors';
+import * as autocolorPlugin from 'chartjs-plugin-autocolors';
 
-Chart.register(...registerables, autocolors);
+Chart.register(...registerables, autocolorPlugin);
 
 new Chart(document.getElementById('chart'), {
   type: 'bar',
