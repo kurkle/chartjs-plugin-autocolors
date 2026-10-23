@@ -10,6 +10,35 @@ import { Chart } from 'chart.js'
 import autocolors from 'chartjs-plugin-autocolors'
 ```
 
+### TypeScript
+
+With `"moduleResolution": "node"` (also called `node10`, the legacy mode some
+Angular and older webpack projects still use), TypeScript ignores the package's
+`exports` map and reads the CommonJS type declarations. The default import above
+then fails with:
+
+```text
+TS1259: Module '"chartjs-plugin-autocolors"' can only be default-imported using the 'allowSyntheticDefaultImports' flag
+```
+
+Either enable interop in `tsconfig.json`:
+
+```json
+{
+  "compilerOptions": {
+    "esModuleInterop": true
+  }
+}
+```
+
+or switch to a resolution mode that reads `exports`, such as `"bundler"`
+(together with `"module": "esnext"` or `"preserve"`), `"node16"` or `"nodenext"`.
+`node10` resolution is deprecated as of TypeScript 6.
+
+Avoid working around the error with `import * as autocolors`. It type-checks, but
+under a bundler it hands Chart.js the module namespace object rather than the
+plugin itself.
+
 ## CDN
 
 ```html
