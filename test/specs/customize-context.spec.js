@@ -1,5 +1,6 @@
+import { acquireChart, releaseChart } from 'chartjs-test-utils'
+
 import autocolors from '../../src/index.js'
-import { acquireChart, releaseChart } from '../utils'
 
 function run(mode, datasets) {
   const calls = []
