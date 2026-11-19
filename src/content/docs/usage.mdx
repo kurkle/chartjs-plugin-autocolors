@@ -35,6 +35,10 @@ A `customize` function can be provided to customize the generated colors. The fu
 object containing a `colors` property (`{ background, border }`) and is expected to return an object with
 `background` and `border` properties, with values acceptable as colors by Chart.js.
 
+The context also identifies the element the colors are applied to: `datasetIndex` is the index of the dataset,
+`dataIndex` the index of the data point (`'data'` mode only) and `label` the dataset label (`'label'` mode only;
+`datasetIndex` is then the first dataset with that label).
+
 ```js
 const lighten = (color, value) => Chart.helpers.color(color).lighten(value).rgbString()
 

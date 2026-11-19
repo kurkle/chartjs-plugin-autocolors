@@ -25,6 +25,8 @@ export interface AutocolorsContext {
   colors: ColorsDescriptor
   dataIndex?: number
   datasetIndex: number
+  /** Label of the dataset, set in `label` mode only. */
+  label?: string
 }
 
 declare const autocolorPlugin: Plugin

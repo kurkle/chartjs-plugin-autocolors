@@ -18,6 +18,10 @@ const _chart = new Chart('test', {
       autocolors: {
         customize(context) {
           const colors = context.colors
+          const label: string | undefined = context.label
+          const datasetIndex: number = context.datasetIndex
+          void label
+          void datasetIndex
           return {
             background: lighten(colors.background, 0.5),
             border: lighten(colors.border, 0.5),
