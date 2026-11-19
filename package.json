@@ -87,6 +87,7 @@
     "predocs:dev": "npm run docs:version",
     "prepack": "npm run build",
     "prepare": "git config core.hooksPath .githooks || true",
+    "pretest:fixture": "playwright install chromium firefox",
     "test": "npm run test:fixture && npm run test:pack",
     "test:fixture": "vitest run --config vitest.browser.config.ts --coverage",
     "test:pack": "kurkle-check-package",
