@@ -47,47 +47,57 @@ function setColors(dataset, background, border, mode) {
 
 function getNext(color, customize, context) {
   const c = color.next().value
+  return applyCustomize(c, customize, context)
+}
+
+function applyCustomize(c, customize, context) {
   if (typeof customize === 'function') {
     return customize(Object.assign({ colors: c }, context))
   }
   return c
 }
 
-function defaultMode(chart, gen, customize, mode) {
-  const datasetMode = mode === 'dataset'
-
-  let c = getNext(gen, customize, {
-    chart,
-    dataIndex: datasetMode ? undefined : 0,
-    datasetIndex: 0,
-  })
-  for (const dataset of chart.data.datasets) {
-    if (datasetMode) {
-      if (setColors(dataset, c.background, c.border, mode)) {
-        c = getNext(gen, customize, { chart, datasetIndex: dataset.index })
-      }
-    } else {
-      const background = []
-      const border = []
-      for (let i = 0; i < dataset.data.length; i++) {
-        background.push(c.background)
-        border.push(c.border)
-        c = getNext(gen, customize, { chart, dataIndex: i, datasetIndex: dataset.index })
-      }
-      setColors(dataset, background, border, mode)
+// A color is consumed only by a dataset that takes it, so the generated color
+// is kept until then. `customize` is called for every dataset with that
+// dataset's own index, as it receives the colors the dataset is about to get.
+function datasetMode(chart, gen, customize, mode) {
+  const datasets = chart.data.datasets
+  let pending = null
+  for (let datasetIndex = 0; datasetIndex < datasets.length; datasetIndex++) {
+    pending = pending || gen.next()
+    const c = applyCustomize(pending.value, customize, { chart, datasetIndex })
+    if (setColors(datasets[datasetIndex], c.background, c.border, mode)) {
+      pending = null
     }
+  }
+}
+
+function dataMode(chart, gen, customize, mode) {
+  const datasets = chart.data.datasets
+  for (let datasetIndex = 0; datasetIndex < datasets.length; datasetIndex++) {
+    const dataset = datasets[datasetIndex]
+    const background = []
+    const border = []
+    for (let dataIndex = 0; dataIndex < dataset.data.length; dataIndex++) {
+      const c = getNext(gen, customize, { chart, dataIndex, datasetIndex })
+      background.push(c.background)
+      border.push(c.border)
+    }
+    setColors(dataset, background, border, mode)
   }
 }
 
 function labelMode(chart, gen, customize, mode) {
   const colors = {}
-  for (const dataset of chart.data.datasets) {
+  const datasets = chart.data.datasets
+  for (let datasetIndex = 0; datasetIndex < datasets.length; datasetIndex++) {
+    const dataset = datasets[datasetIndex]
     const label = dataset.label ?? ''
     if (!colors[label]) {
       colors[label] = getNext(gen, customize, {
         chart,
         dataIndex: undefined,
-        datasetIndex: 0,
+        datasetIndex,
         label,
       })
     }
@@ -116,7 +126,10 @@ const autocolorPlugin = {
     if (mode === 'label') {
       return labelMode(chart, gen, customize, mode)
     }
-    return defaultMode(chart, gen, customize, mode)
+    if (mode === 'dataset') {
+      return datasetMode(chart, gen, customize, mode)
+    }
+    return dataMode(chart, gen, customize, mode)
   },
   id: 'autocolors',
 }
