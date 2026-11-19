@@ -1,5 +1,6 @@
+import { acquireChart, releaseChart } from 'chartjs-test-utils'
+
 import autocolors from '../../src/index.js'
-import { acquireChart, releaseChart } from '../utils'
 
 describe('mode: data', () => {
   it('sets per-point borderColor (and not a stray "border" property)', () => {

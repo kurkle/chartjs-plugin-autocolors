@@ -9,7 +9,6 @@
       "src/**/*.js",
       "test/setup.js",
       "test/specs/**/*.js",
-      "test/utils/**/*.js",
       "tsconfig.tooling.json",
       "types/**/*.ts",
       "types/**/*.json",
