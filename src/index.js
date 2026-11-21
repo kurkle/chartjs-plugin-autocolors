@@ -52,7 +52,7 @@ function getNext(color, customize, context) {
 
 function applyCustomize(c, customize, context) {
   if (typeof customize === 'function') {
-    return customize(Object.assign({ colors: c }, context))
+    return customize({ colors: c, ...context })
   }
   return c
 }
@@ -134,4 +134,4 @@ const autocolorPlugin = {
   id: 'autocolors',
 }
 
-export { autocolorPlugin as default }
+export default autocolorPlugin
